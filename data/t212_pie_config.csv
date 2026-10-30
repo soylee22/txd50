@@ -1,0 +1,51 @@
+rank,ticker,name,country,sector,weight_pct,div_yield,div_growth_5y,roe
+1,VOLV-B.ST,Volvo AB,Sweden,Industrials,2.79,6.45,14.5,24.5
+2,MBG.DE,Mercedes-Benz Group AG,Germany,Consumer Discretionary,3.16,7.85,9.5,14.8
+3,BMW.DE,Bayerische Motoren Werke (BMW),Germany,Consumer Discretionary,2.65,6.95,8.2,13.5
+4,RIO.L,Rio Tinto plc,United Kingdom,Materials,4.0,5.61,5.8,19.3
+5,EQNR.OL,Equinor ASA,Norway,Energy,2.23,7.45,14.2,22.5
+6,TTE.PA,TotalEnergies SE,France,Energy,3.14,5.35,7.4,18.2
+7,SHEL.L,Shell plc,United Kingdom,Energy,3.14,3.85,7.8,14.2
+8,BP.L,BP plc,United Kingdom,Energy,2.65,5.75,7.2,11.5
+9,ENI.MI,Eni S.p.A.,Italy,Energy,1.33,6.85,6.2,12.4
+10,BATS.L,British American Tobacco,United Kingdom,Consumer Staples,3.77,8.4,3.2,12.0
+11,IMB.L,Imperial Brands plc,United Kingdom,Consumer Staples,1.2,6.9,4.0,29.0
+12,ENEL.MI,Enel S.p.A.,Italy,Utilities,3.47,6.2,6.5,13.8
+13,ALV.DE,Allianz SE,Germany,Financials,1.83,4.85,8.8,16.2
+14,ZURN.SW,Zurich Insurance Group,Switzerland,Financials,1.2,4.83,8.2,25.7
+15,CS.PA,AXA S.A.,France,Financials,1.11,5.85,8.5,14.2
+16,MUV2.DE,Munich Re,Germany,Financials,0.97,3.65,11.5,19.8
+17,BNP.PA,BNP Paribas S.A.,France,Financials,1.17,6.75,9.8,10.8
+18,HSBA.L,HSBC Holdings plc,United Kingdom,Financials,2.14,6.8,8.5,13.8
+19,ISP.MI,Intesa Sanpaolo S.p.A.,Italy,Financials,1.03,8.1,14.8,16.8
+20,UCG.MI,UniCredit S.p.A.,Italy,Financials,0.93,5.25,24.0,17.5
+21,BBVA.MC,Banco Bilbao Vizcaya Argentaria,Spain,Financials,0.8,6.25,18.2,16.5
+22,INGA.AS,ING Groep N.V.,Netherlands,Financials,0.77,6.95,12.8,14.5
+23,NDA-SE.ST,Nordea Bank Abp,Sweden,Financials,0.54,8.25,11.2,16.8
+24,DG.PA,Vinci S.A.,France,Industrials,3.26,4.2,8.1,17.5
+25,KPN.AS,Koninklijke KPN N.V.,Netherlands,Communication Services,0.72,4.45,6.8,24.0
+26,AVGO,Broadcom Inc.,United States,Information Technology,4.02,1.45,14.5,44.2
+27,JPM,JPMorgan Chase & Co.,United States,Financials,4.0,2.25,9.5,17.5
+28,HD,"The Home Depot, Inc.",United States,Consumer Discretionary,3.59,2.35,12.5,95.0
+29,PG,Procter & Gamble Co.,United States,Consumer Staples,3.5,2.45,6.2,32.5
+30,JNJ,Johnson & Johnson,United States,Health Care,3.4,3.1,5.8,26.5
+31,ABBV,AbbVie Inc.,United States,Health Care,3.03,3.45,8.5,45.0
+32,KO,The Coca-Cola Company,United States,Consumer Staples,2.51,3.1,4.8,42.0
+33,CVX,Chevron Corporation,United States,Energy,2.46,4.15,6.2,12.2
+34,PEP,"PepsiCo, Inc.",United States,Consumer Staples,2.08,3.2,6.8,52.0
+35,CSCO,"Cisco Systems, Inc.",United States,Information Technology,2.03,2.95,3.2,27.3
+36,PM,Philip Morris International,United States,Consumer Staples,1.84,4.25,4.0,65.0
+37,CAT,Caterpillar Inc.,United States,Industrials,1.75,1.45,8.5,52.0
+38,TXN,Texas Instruments Inc.,United States,Information Technology,1.66,2.85,9.8,39.7
+39,VZ,Verizon Communications Inc.,United States,Communication Services,1.56,6.45,2.0,15.8
+40,MS,Morgan Stanley,United States,Financials,1.56,3.25,18.5,13.8
+41,AMGN,Amgen Inc.,United States,Health Care,1.51,3.15,9.5,85.0
+42,PFE,Pfizer Inc.,United States,Health Care,1.37,5.75,4.2,12.0
+43,BLK,"BlackRock, Inc.",United States,Financials,1.32,2.15,9.2,15.5
+44,COP,ConocoPhillips,United States,Energy,1.18,3.45,11.5,18.5
+45,LMT,Lockheed Martin Corp.,United States,Industrials,1.18,2.45,7.2,80.2
+46,UPS,"United Parcel Service, Inc.",United States,Industrials,1.09,5.25,8.8,28.6
+47,BMY,Bristol-Myers Squibb Co.,United States,Health Care,0.99,4.85,6.5,18.0
+48,GILD,"Gilead Sciences, Inc.",United States,Health Care,0.93,3.85,4.2,22.0
+49,MO,"Altria Group, Inc.",United States,Consumer Staples,0.8,7.85,4.5,80.0
+50,EOG,"EOG Resources, Inc.",United States,Energy,0.64,3.25,18.5,24.0
