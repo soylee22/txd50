@@ -44,451 +44,547 @@
       border-radius: 18px;
       font-size: 13px;
       font-weight: 500;
-      border: 1px solid #dadce0;
-      background: #ffffff;
       color: #3c4043;
-      transition: all 0.15s ease-in-out;
+      background: #ffffff;
+      border: 1px solid #dadce0;
       cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
     }
     .google-chip:hover {
-      background-color: #f1f3f4;
+      background: #f1f3f4;
       border-color: #dadce0;
     }
     .google-chip.active {
-      background-color: #e8f0fe;
-      border-color: #d2e3fc;
+      background: #e8f0fe;
       color: #1a73e8;
+      border-color: #d2e3fc;
+      font-weight: 600;
     }
     .tab-btn {
-      font-family: "Google Sans Text", sans-serif;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #5f6368;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .tab-btn.active {
+      background: #e8f0fe;
+      color: #1a73e8;
+      font-weight: 600;
+    }
+    .tab-btn:hover:not(.active) {
+      background: #f1f3f4;
+      color: #202124;
+    }
+    .year-pill {
+      padding: 5px 12px;
       font-size: 12px;
       font-weight: 500;
-      padding: 5px 12px;
-      border-radius: 8px;
       color: #5f6368;
-      background: transparent;
-      transition: all 0.15s;
+      border-radius: 16px;
+      transition: all 0.15s ease;
+      cursor: pointer;
     }
-    .tab-btn:hover { background-color: #f1f3f4; color: #202124; }
-    .tab-btn.active { background-color: #e8f0fe; color: #1a73e8; font-weight: 600; }
+    .year-pill.active {
+      background: #1a73e8;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .year-pill:hover:not(.active) {
+      background: #e8eaed;
+      color: #202124;
+    }
+    input[type=range] {
+      accent-color: #1a73e8;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f3f4;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dadce0;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #bdc1c6;
+    }
   </style>
 </head>
-<body class="min-h-screen antialiased bg-white text-[#202124]">
+<body class="min-h-screen flex flex-col bg-[#ffffff]">
 
-  <!-- Top Navigation Header with Custom Lodestar Brand -->
-  <header class="border-b border-[#dadce0] bg-white sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+  <!-- Top Google-style Navigation Bar -->
+  <header class="border-b border-[#dadce0] bg-[#ffffff] sticky top-0 z-40">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo & Name -->
-      <a href="#overview" class="flex items-center space-x-3 cursor-pointer group">
-        <!-- Modern Geometric Lodestar Star Logo -->
-        <div class="w-9 h-9 rounded-xl bg-[#e8f0fe] border border-[#d2e3fc] flex items-center justify-center text-[#1a73e8] transition group-hover:bg-[#1a73e8] group-hover:text-white">
-          <svg class="w-5 h-5 transition-transform duration-200 group-hover:rotate-45" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
-          </svg>
-        </div>
-        
-        <div class="flex items-center space-x-2">
-          <span class="text-xl font-google font-medium text-[#202124] tracking-tight">Lodestar</span>
-          <span class="text-xs px-2 py-0.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] font-google font-semibold border border-[#d2e3fc]">TXD50</span>
-        </div>
-      </a>
+      <!-- Logo & Brand -->
+      <div class="flex items-center space-x-3">
+        <a href="#" class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#e8f0fe] flex items-center justify-center text-[#1a73e8]">
+            <svg class="w-5 h-5 text-[#1a73e8]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-normal font-google text-[#202124] tracking-tight">Lodestar</span>
+        </a>
+        <span class="inline-block px-2 py-0.5 text-xs font-semibold bg-[#e8f0fe] text-[#1a73e8] rounded-full uppercase tracking-wider font-mono">TXD50</span>
+      </div>
 
-      <!-- Quick Nav Links in center -->
-      <nav class="hidden md:flex items-center space-x-1 text-xs font-medium text-[#5f6368]">
-        <a href="#overview" class="px-3 py-1.5 rounded-lg hover:text-[#1a73e8] hover:bg-[#f1f3f4] transition">Overview</a>
-        <a href="#performance" class="px-3 py-1.5 rounded-lg hover:text-[#1a73e8] hover:bg-[#f1f3f4] transition">Performance</a>
-        <a href="#calculator" class="px-3 py-1.5 rounded-lg hover:text-[#1a73e8] hover:bg-[#f1f3f4] transition">Income Calculator</a>
-        <a href="#holdings" class="px-3 py-1.5 rounded-lg hover:text-[#1a73e8] hover:bg-[#f1f3f4] transition">Constituents</a>
-        <a href="#schedule" class="px-3 py-1.5 rounded-lg hover:text-[#1a73e8] hover:bg-[#f1f3f4] transition">Rebalance Schedule</a>
+      <!-- Center Nav Links -->
+      <nav class="hidden md:flex items-center space-x-6 text-xs font-medium text-[#5f6368]">
+        <a href="#overview" class="hover:text-[#1a73e8] transition py-1">Overview</a>
+        <a href="#performance" class="hover:text-[#1a73e8] transition py-1">Performance</a>
+        <a href="#calculator" class="hover:text-[#1a73e8] transition py-1">Income Calculator</a>
+        <a href="#constituents" class="hover:text-[#1a73e8] transition py-1">Constituents</a>
+        <a href="#reconstitutions" class="hover:text-[#1a73e8] transition py-1">Annual Archive</a>
+        <a href="#schedule" class="hover:text-[#1a73e8] transition py-1">Rebalance Schedule</a>
       </nav>
 
-      <!-- Right Actions: Next Rebalance Pill & T212 Button -->
+      <!-- Right Action Items -->
       <div class="flex items-center space-x-3">
-        <div class="hidden sm:flex items-center bg-[#e8f0fe] border border-[#d2e3fc] px-3.5 py-1.5 rounded-full text-xs font-medium text-[#1a73e8]">
-          <span class="w-2 h-2 rounded-full bg-[#1a73e8] mr-2 animate-pulse"></span>
-          <span>Next Rebalance: </span>
-          <span id="countdown-banner" class="font-mono font-bold ml-1.5">Loading...</span>
+        <div class="hidden sm:flex items-center space-x-2 bg-[#e8f0fe] text-[#1a73e8] px-3 py-1.5 rounded-full text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-[#1a73e8] animate-pulse"></span>
+          <span>Next Rebalance:</span>
+          <span id="countdown-banner" class="font-mono font-semibold">Calculating...</span>
         </div>
-
         <button onclick="copyT212Pie()" class="bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs font-medium px-4 py-2 rounded-full transition shadow-sm flex items-center space-x-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
           </svg>
           <span>Copy Trading 212 Pie</span>
         </button>
       </div>
+
     </div>
   </header>
 
   <!-- Main Content Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+  <main class="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 w-full space-y-6">
 
-    <!-- Overview & Quote Header Section -->
-    <div id="overview" class="border-b border-[#dadce0] pb-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center space-x-2 text-xs text-[#5f6368] mb-1 font-medium">
-            <span>INDEX</span>
-            <span>•</span>
-            <span class="text-[#1a73e8] font-semibold">LON:TXD50</span>
-            <span>•</span>
-            <span>TRANSATLANTIC QUALITY DIVIDEND</span>
-          </div>
-          <h1 class="text-2xl sm:text-3xl font-google font-normal text-[#202124]">
-            Lodestar Transatlantic Quality Dividend 50 ETF
-          </h1>
-          <p class="text-xs text-[#5f6368] mt-1">
-            Engineered from Dow Jones U.S. Dividend 100 methodology across FTSE 350, STOXX Europe 600, and S&P 500
-          </p>
+    <!-- Hero Header / Financial Ticker View -->
+    <div id="overview" class="flex flex-col md:flex-row md:items-end justify-between border-b border-[#dadce0] pb-6 gap-4">
+      <div>
+        <div class="flex items-center space-x-2 text-xs font-medium text-[#5f6368] mb-1">
+          <span>INDEX</span>
+          <span>•</span>
+          <span class="font-mono text-[#1a73e8]">LON:TXD50</span>
+          <span>•</span>
+          <span>TRANSATLANTIC QUALITY DIVIDEND</span>
         </div>
-
-        <!-- Quote Numbers -->
-        <div class="flex items-baseline space-x-3">
-          <span class="text-3xl sm:text-4xl font-google font-normal text-[#202124]">£240.88</span>
-          <div class="flex items-center bg-[#e6f4ea] text-[#137333] px-2.5 py-1 rounded-md text-sm font-medium">
-            <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-            </svg>
-            <span>+£140.88 (140.88%)</span>
-            <span class="text-xs ml-1.5 text-[#0d652d] font-normal">5Y PIT</span>
-          </div>
+        <h1 class="text-3xl font-normal font-google text-[#202124] tracking-tight">Lodestar Transatlantic Quality Dividend 50 ETF</h1>
+        <p class="text-xs text-[#5f6368] mt-1 max-w-3xl">
+          Engineered from Dow Jones U.S. Dividend 100 methodology across FTSE 350, STOXX Europe 600, and S&P 500
+        </p>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#70757a] mt-2">
+          <span>Point-in-time annual March reconstitution</span>
+          <span>•</span>
+          <span>Quarterly drift caps (4.0% Single Stock, 25.0% Sector)</span>
+          <span>•</span>
+          <span>Base Currency in British Pounds (£)</span>
         </div>
       </div>
 
-      <div class="flex items-center space-x-2 text-xs text-[#70757a] mt-3">
-        <span>Point-in-time annual March reconstitution</span>
-        <span>•</span>
-        <span>Quarterly drift caps (4.0% Single Stock, 25.0% Sector)</span>
-        <span>•</span>
-        <span>Base Currency in British Pounds (£)</span>
+      <!-- Main Price Display -->
+      <div class="text-right flex flex-col md:items-end">
+        <div class="text-3xl font-normal font-google text-[#202124]">£240.88</div>
+        <div class="flex items-center space-x-1.5 mt-0.5">
+          <span class="inline-flex items-center text-xs font-medium px-2 py-0.5 rounded bg-[#e6f4ea] text-[#137333]">
+            <svg class="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12 7l-5 5 1.41 1.41L12 9.83l3.59 3.58L17 12z"/>
+            </svg>
+            +£140.88 (140.88%)
+          </span>
+          <span class="text-xs text-[#70757a]">5Y PIT</span>
+        </div>
       </div>
     </div>
 
-    <!-- Performance Chart Card -->
-    <div id="performance" class="google-card p-6">
-      
-      <!-- Time Range & View Controls -->
-      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#dadce0]">
-        
-        <!-- Standard Time Range Tabs -->
-        <div class="flex items-center space-x-1 bg-[#f1f3f4] p-1 rounded-lg">
-          <button onclick="filterChartRange('1M')" class="tab-btn" id="tab-1m">1M</button>
-          <button onclick="filterChartRange('6M')" class="tab-btn" id="tab-6m">6M</button>
-          <button onclick="filterChartRange('YTD')" class="tab-btn" id="tab-ytd">YTD</button>
-          <button onclick="filterChartRange('1Y')" class="tab-btn" id="tab-1y">1Y</button>
-          <button onclick="filterChartRange('5Y')" class="tab-btn active" id="tab-5y">5Y</button>
-          <button onclick="filterChartRange('MAX')" class="tab-btn" id="tab-max">MAX</button>
+    <!-- Chart Card -->
+    <div id="performance" class="google-card p-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#dadce0] gap-3">
+        <!-- Range Selectors -->
+        <div class="flex items-center space-x-1 bg-[#f1f3f4] p-1 rounded-lg text-xs font-medium">
+          <button onclick="setChartRange('1M')" id="btn-1M" class="tab-btn">1M</button>
+          <button onclick="setChartRange('6M')" id="btn-6M" class="tab-btn">6M</button>
+          <button onclick="setChartRange('YTD')" id="btn-YTD" class="tab-btn">YTD</button>
+          <button onclick="setChartRange('1Y')" id="btn-1Y" class="tab-btn">1Y</button>
+          <button onclick="setChartRange('5Y')" id="btn-5Y" class="tab-btn active">5Y</button>
+          <button onclick="setChartRange('MAX')" id="btn-MAX" class="tab-btn">MAX</button>
         </div>
 
-        <!-- Mode Toggle & Delineated Benchmark Chips -->
-        <div class="flex flex-wrap items-center gap-2">
-          <div class="flex items-center bg-[#f1f3f4] p-1 rounded-lg text-xs font-medium">
-            <button onclick="setChartMetric('total_return')" id="btn-metric-tot" class="tab-btn active">Total Return</button>
-            <button onclick="setChartMetric('drawdown')" id="btn-metric-dd" class="tab-btn">Drawdown</button>
+        <!-- Metric Toggle & Benchmarks -->
+        <div class="flex items-center space-x-3 text-xs">
+          <div class="flex items-center space-x-1 bg-[#f1f3f4] p-1 rounded-lg">
+            <button onclick="setChartMetric('total_return')" id="btn-tr" class="tab-btn active">Total Return</button>
+            <button onclick="setChartMetric('drawdown')" id="btn-dd" class="tab-btn">Drawdown</button>
           </div>
-
-          <div class="hidden sm:flex items-center space-x-1.5 pl-3 border-l border-[#dadce0] text-xs font-medium">
-            <span class="text-[#5f6368] text-[11px] mr-1">Benchmarks:</span>
-            
-            <!-- TXD50 Hero Badge -->
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-[#e8f0fe] text-[#1a73e8] border border-[#d2e3fc]">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#1a73e8] mr-1.5"></span>TXD50
-            </span>
-
-            <!-- VUSA: Warm Amber Gold -->
-            <button onclick="toggleBenchmark('VUSA (S&P 500)')" id="chk-vusa" class="google-chip active text-xs py-1 px-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b] mr-1.5"></span>VUSA (S&P 500)
-            </button>
-            
-            <!-- SCHD: Royal Violet Purple -->
-            <button onclick="toggleBenchmark('SCHD (US Div 100)')" id="chk-schd" class="google-chip active text-xs py-1 px-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#7c3aed] mr-1.5"></span>SCHD (US Div)
-            </button>
-            
-            <!-- VUKG: British Crimson Red -->
-            <button onclick="toggleBenchmark('VUKG (FTSE 100)')" id="chk-vukg" class="google-chip active text-xs py-1 px-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#dc2626] mr-1.5"></span>VUKG (FTSE 100)
-            </button>
-            
-            <!-- VWRL: Neutral Charcoal Slate -->
-            <button onclick="toggleBenchmark('VWRL (All-World)')" id="chk-vwrl" class="google-chip active text-xs py-1 px-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#4b5563] mr-1.5"></span>VWRL (All-World)
-            </button>
+          <span class="text-[#70757a] hidden sm:inline">|</span>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs text-[#5f6368] font-medium hidden sm:inline">Benchmarks:</span>
+            <label class="inline-flex items-center space-x-1 cursor-pointer bg-[#e8f0fe] px-2 py-1 rounded text-xs text-[#1a73e8] font-medium">
+              <span class="w-2 h-2 rounded-full bg-[#1a73e8]"></span>
+              <span>TXD50</span>
+            </label>
+            <label class="inline-flex items-center space-x-1 cursor-pointer bg-[#fef3c7] px-2 py-1 rounded text-xs text-[#b45309] font-medium">
+              <input type="checkbox" checked onchange="toggleBenchmark('VUSA (S&P 500)')" class="rounded text-[#f59e0b] focus:ring-0 w-3 h-3">
+              <span>VUSA (S&P 500)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1 cursor-pointer bg-[#ede9fe] px-2 py-1 rounded text-xs text-[#6d28d9] font-medium">
+              <input type="checkbox" checked onchange="toggleBenchmark('SCHD (US Div 100)')" class="rounded text-[#7c3aed] focus:ring-0 w-3 h-3">
+              <span>SCHD (US Div)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1 cursor-pointer bg-[#fee2e2] px-2 py-1 rounded text-xs text-[#b91c1c] font-medium">
+              <input type="checkbox" checked onchange="toggleBenchmark('VUKG (FTSE 100)')" class="rounded text-[#dc2626] focus:ring-0 w-3 h-3">
+              <span>VUKG (FTSE 100)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1 cursor-pointer bg-[#f3f4f6] px-2 py-1 rounded text-xs text-[#374151] font-medium">
+              <input type="checkbox" checked onchange="toggleBenchmark('VWRL (All-World)')" class="rounded text-[#4b5563] focus:ring-0 w-3 h-3">
+              <span>VWRL (All-World)</span>
+            </label>
           </div>
         </div>
       </div>
 
-      <!-- Chart Display Area -->
-      <div class="relative h-[340px] sm:h-[400px] w-full mt-4">
-        <canvas id="googleFinanceChart"></canvas>
+      <!-- Chart Canvas -->
+      <div class="h-[360px] w-full pt-4 relative">
+        <canvas id="etfChart"></canvas>
       </div>
 
-      <!-- Stat Row Under Chart with Delineated Colours -->
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6 pt-5 border-t border-[#dadce0]">
+      <!-- Benchmark Performance Summary Chips -->
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-4 border-t border-[#dadce0] mt-2">
         <div class="border-t-2 border-[#1a73e8] pt-2">
-          <div class="flex items-center text-xs font-semibold text-[#1a73e8]">
-            <span class="w-2 h-2 rounded-full bg-[#1a73e8] mr-1.5"></span>TXD50 Return
-          </div>
-          <div class="text-lg font-google font-medium text-[#1a73e8] mt-0.5">+140.88%</div>
+          <div class="text-[11px] font-semibold text-[#1a73e8] uppercase tracking-wider">● TXD50 Return</div>
+          <div class="text-base font-semibold text-[#202124] font-mono mt-0.5">+140.88%</div>
           <div class="text-[11px] text-[#5f6368]">15.75% CAGR · 0.97 Sharpe</div>
         </div>
-
         <div class="border-t-2 border-[#f59e0b] pt-2">
-          <div class="flex items-center text-xs font-semibold text-[#b45309]">
-            <span class="w-2 h-2 rounded-full bg-[#f59e0b] mr-1.5"></span>VUSA (S&P 500)
-          </div>
-          <div class="text-lg font-google font-medium text-[#202124] mt-0.5">+123.69%</div>
+          <div class="text-[11px] font-semibold text-[#b45309] uppercase tracking-wider">● VUSA (S&P 500)</div>
+          <div class="text-base font-semibold text-[#202124] font-mono mt-0.5">+123.69%</div>
           <div class="text-[11px] text-[#5f6368]">14.33% CAGR · 0.78 Sharpe</div>
         </div>
-
         <div class="border-t-2 border-[#7c3aed] pt-2">
-          <div class="flex items-center text-xs font-semibold text-[#6d28d9]">
-            <span class="w-2 h-2 rounded-full bg-[#7c3aed] mr-1.5"></span>SCHD (US Div)
-          </div>
-          <div class="text-lg font-google font-medium text-[#202124] mt-0.5">+112.49%</div>
+          <div class="text-[11px] font-semibold text-[#6d28d9] uppercase tracking-wider">● SCHD (US Div)</div>
+          <div class="text-base font-semibold text-[#202124] font-mono mt-0.5">+112.49%</div>
           <div class="text-[11px] text-[#5f6368]">13.36% CAGR · 0.61 Sharpe</div>
         </div>
-
         <div class="border-t-2 border-[#dc2626] pt-2">
-          <div class="flex items-center text-xs font-semibold text-[#b91c1c]">
-            <span class="w-2 h-2 rounded-full bg-[#dc2626] mr-1.5"></span>VUKG (FTSE 100)
-          </div>
-          <div class="text-lg font-google font-medium text-[#202124] mt-0.5">+101.17%</div>
+          <div class="text-[11px] font-semibold text-[#b91c1c] uppercase tracking-wider">● VUKG (FTSE 100)</div>
+          <div class="text-base font-semibold text-[#202124] font-mono mt-0.5">+101.17%</div>
           <div class="text-[11px] text-[#5f6368]">12.33% CAGR · 0.71 Sharpe</div>
         </div>
-
         <div class="border-t-2 border-[#4b5563] pt-2">
-          <div class="flex items-center text-xs font-semibold text-[#374151]">
-            <span class="w-2 h-2 rounded-full bg-[#4b5563] mr-1.5"></span>VWRL (All-World)
-          </div>
-          <div class="text-lg font-google font-medium text-[#202124] mt-0.5">+93.01%</div>
+          <div class="text-[11px] font-semibold text-[#374151] uppercase tracking-wider">● VWRL (All-World)</div>
+          <div class="text-base font-semibold text-[#202124] font-mono mt-0.5">+93.01%</div>
           <div class="text-[11px] text-[#5f6368]">11.56% CAGR · 0.64 Sharpe</div>
         </div>
       </div>
     </div>
 
-    <!-- Key Stats & Rebalance Schedule Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Fundamental Stats & Rebalance Schedule (Two-Column Layout) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
-      <!-- Key Statistics Table (7 Cols) -->
-      <div class="lg:col-span-7 google-card p-6">
-        <h2 class="text-lg font-google font-normal text-[#202124] mb-4">Key statistics</h2>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 text-sm">
-          <div class="divide-y divide-[#f1f3f4]">
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Indicative Div Yield</span>
-              <span class="font-medium text-[#137333]">5.33%</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">5Y Dividend Growth (CAGR)</span>
-              <span class="font-medium text-[#202124]">+12.62%</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Weighted ROE</span>
-              <span class="font-medium text-[#202124]">30.42%</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">5Y Annualised Return</span>
-              <span class="font-medium text-[#137333]">15.75%</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Annualised Volatility</span>
-              <span class="font-medium text-[#202124]">12.68%</span>
-            </div>
+      <!-- Key Statistics -->
+      <div class="lg:col-span-2 google-card p-5">
+        <h2 class="text-sm font-medium text-[#202124] mb-4">Key statistics</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-6 text-xs">
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Indicative Div Yield</span>
+            <span class="font-medium text-[#137333] font-mono">5.33%</span>
           </div>
-
-          <div class="divide-y divide-[#f1f3f4]">
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Sharpe Ratio (Rf=3.5%)</span>
-              <span class="font-medium text-[#202124]">0.97</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Maximum Drawdown</span>
-              <span class="font-medium text-[#c5221f]">-13.12%</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Constituents Count</span>
-              <span class="font-medium text-[#202124]">50 (25 US + 25 Europe)</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Single Stock Cap</span>
-              <span class="font-medium text-[#202124]">4.00%</span>
-            </div>
-            <div class="py-2.5 flex justify-between">
-              <span class="text-[#5f6368]">Sector Cap</span>
-              <span class="font-medium text-[#202124]">25.00%</span>
-            </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Sharpe Ratio (Rf=3.5%)</span>
+            <span class="font-medium text-[#202124] font-mono">0.97</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">5Y Dividend Growth (CAGR)</span>
+            <span class="font-medium text-[#202124] font-mono">+12.62%</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Maximum Drawdown</span>
+            <span class="font-medium text-[#c5221f] font-mono">-13.12%</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Weighted ROE</span>
+            <span class="font-medium text-[#202124] font-mono">30.42%</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Constituents Count</span>
+            <span class="font-medium text-[#202124] font-mono">50 (25 US + 25 Europe)</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">5Y Annualised Return</span>
+            <span class="font-medium text-[#137333] font-mono">15.75%</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Single Stock Cap</span>
+            <span class="font-medium text-[#202124] font-mono">4.00%</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Annualised Volatility</span>
+            <span class="font-medium text-[#202124] font-mono">12.68%</span>
+          </div>
+          <div class="flex justify-between border-b border-[#f1f3f4] pb-2">
+            <span class="text-[#5f6368]">Sector Cap</span>
+            <span class="font-medium text-[#202124] font-mono">25.00%</span>
           </div>
         </div>
       </div>
 
-      <!-- Rebalance Calendar Card (5 Cols) -->
-      <div id="schedule" class="lg:col-span-5 google-card p-6 flex flex-col justify-between">
+      <!-- Rebalance Schedule Card -->
+      <div id="schedule" class="google-card p-5 flex flex-col justify-between">
         <div>
-          <div class="flex items-center space-x-2 text-xs font-medium text-[#1a73e8] uppercase tracking-wide mb-1">
+          <div class="flex items-center space-x-1.5 text-xs text-[#1a73e8] font-medium mb-1">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
-            <span>Rebalance Schedule</span>
+            <span class="uppercase tracking-wider">Rebalance Schedule</span>
           </div>
-          <h2 class="text-lg font-google font-normal text-[#202124]">Next scheduled events</h2>
-
-          <div class="mt-4 space-y-3">
-            <div class="border-l-4 border-[#1a73e8] bg-[#f8f9fa] p-3 rounded-r-lg">
-              <div class="text-xs font-semibold text-[#1a73e8]">Q4 2026 Cap Rebalance</div>
-              <div id="countdown-card" class="text-xl font-google font-medium text-[#202124] my-0.5">--d --h --m --s</div>
-              <div class="text-xs text-[#5f6368]">Monday, 21 December 2026 · Resets 4% Stock / 25% Sector Caps</div>
+          <h2 class="text-sm font-medium text-[#202124] mb-3">Next scheduled events</h2>
+          
+          <div class="space-y-3">
+            <div class="p-3 bg-[#e8f0fe] rounded-lg border border-[#d2e3fc]">
+              <div class="text-[11px] font-semibold text-[#1a73e8] uppercase tracking-wider">Q4 2026 Cap Rebalance</div>
+              <div id="countdown-card" class="text-lg font-bold font-mono text-[#1a73e8] mt-0.5">Calculating...</div>
+              <div class="text-[11px] text-[#5f6368] mt-0.5">Monday, 21 December 2026 · Resets 4% Stock / 25% Sector Caps</div>
             </div>
 
-            <div class="border-l-4 border-[#70757a] bg-[#f8f9fa] p-3 rounded-r-lg">
-              <div class="text-xs font-semibold text-[#5f6368]">2027 Annual Reconstitution</div>
-              <div id="countdown-annual-card" class="text-lg font-google font-medium text-[#202124] my-0.5">--d --h --m --s</div>
-              <div class="text-xs text-[#5f6368]">Monday, 22 March 2027 · Full 5-Step Quality & Continuity Funnel</div>
+            <div class="p-3 bg-[#f8f9fa] rounded-lg border border-[#dadce0]">
+              <div class="text-[11px] font-semibold text-[#5f6368] uppercase tracking-wider">2027 Annual Reconstitution</div>
+              <div id="countdown-annual-card" class="text-lg font-bold font-mono text-[#202124] mt-0.5">Calculating...</div>
+              <div class="text-[11px] text-[#70757a] mt-0.5">Monday, 22 March 2027 · Full 5-Step Quality & Continuity Funnel</div>
             </div>
           </div>
         </div>
 
-        <div class="text-[11px] text-[#70757a] mt-4 pt-3 border-t border-[#dadce0]">
+        <div class="text-[11px] text-[#70757a] mt-4 pt-3 border-t border-[#f1f3f4]">
           Rebalancing executes in Trading 212 pies without liquidating non-drifted constituents.
         </div>
       </div>
 
     </div>
 
-    <!-- Dividend Calculator & Sector Allocation Grid -->
+    <!-- Dividend Calculator & Sector/Country Allocations -->
     <div id="calculator" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       
-      <!-- Calculator (5 Cols) -->
-      <div class="lg:col-span-5 google-card p-6">
-        <h2 class="text-lg font-google font-normal text-[#202124] mb-1">Dividend income estimator</h2>
-        <p class="text-xs text-[#5f6368] mb-4">Project annual payouts and compounding yield based on 5.33% current yield and 12.62% dividend CAGR.</p>
+      <!-- Calculator Column -->
+      <div class="lg:col-span-5 google-card p-5 flex flex-col justify-between">
+        <div>
+          <h2 class="text-sm font-medium text-[#202124]">Dividend income estimator</h2>
+          <p class="text-xs text-[#5f6368] mt-1 mb-4">
+            Project annual payouts and compounding yield based on 5.33% current yield and 12.62% dividend CAGR.
+          </p>
 
-        <div class="space-y-4">
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-[#5f6368]">Investment Principal</span>
+                <span id="calc-slider-display" class="font-semibold font-mono text-base text-[#1a73e8]">£25,000</span>
+              </div>
+              <input type="range" id="calc-slider" min="1000" max="250000" step="1000" value="25000" class="w-full h-1.5 bg-[#dadce0] rounded-lg cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#70757a] mt-1">
+                <span>£1,000</span>
+                <span>£100,000</span>
+                <span>£250,000</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <div class="bg-[#f8f9fa] border border-[#dadce0] p-3 rounded-lg">
+                <div class="text-[11px] text-[#5f6368]">Annual Payout</div>
+                <div id="calc-annual-val" class="text-lg font-bold text-[#137333] font-mono mt-0.5">£1,333</div>
+                <div class="text-[10px] text-[#70757a]">5.33% current yield</div>
+              </div>
+              <div class="bg-[#f8f9fa] border border-[#dadce0] p-3 rounded-lg">
+                <div class="text-[11px] text-[#5f6368]">Monthly Average</div>
+                <div id="calc-monthly-val" class="text-lg font-bold text-[#202124] font-mono mt-0.5">£111.04</div>
+                <div class="text-[10px] text-[#70757a]">Passive cash flow</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#e6f4ea] border border-[#ceead6] p-3 rounded-lg mt-4 flex items-center justify-between">
           <div>
-            <div class="flex justify-between items-center text-xs mb-1.5">
-              <span class="text-[#5f6368]">Investment Principal</span>
-              <span id="calc-slider-display" class="font-google font-medium text-[#1a73e8] text-base">£25,000</span>
-            </div>
-            <input type="range" id="calc-slider" min="1000" max="250000" step="1000" value="25000"
-              class="w-full h-1.5 bg-[#e8eaed] rounded-lg appearance-none cursor-pointer accent-[#1a73e8]">
-            <div class="flex justify-between text-[10px] text-[#70757a] mt-1 font-mono">
-              <span>£1,000</span>
-              <span>£100,000</span>
-              <span>£250,000</span>
-            </div>
+            <div class="text-[11px] font-medium text-[#137333]">Projected Year 5 Payout</div>
+            <div id="calc-yr5-val" class="text-base font-bold text-[#0d652d] font-mono">£2,414 / year</div>
+            <div class="text-[10px] text-[#137333]">Effective yield on initial cost expands to <strong id="calc-yoc-val">9.66%</strong> by year 5.</div>
           </div>
-
-          <div class="grid grid-cols-2 gap-3 pt-2">
-            <div class="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-3">
-              <div class="text-[11px] text-[#5f6368]">Annual Payout</div>
-              <div id="calc-annual-val" class="text-xl font-google font-medium text-[#137333] mt-0.5">£1,332</div>
-              <div class="text-[10px] text-[#70757a]">5.33% current yield</div>
-            </div>
-            <div class="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-3">
-              <div class="text-[11px] text-[#5f6368]">Monthly Average</div>
-              <div id="calc-monthly-val" class="text-xl font-google font-medium text-[#137333] mt-0.5">£111.00</div>
-              <div class="text-[10px] text-[#70757a]">Passive cash flow</div>
-            </div>
-          </div>
-
-          <div class="bg-[#e6f4ea] border border-[#ceead6] rounded-xl p-3.5">
-            <div class="flex justify-between text-xs text-[#0d652d] font-medium">
-              <span>Projected Year 5 Payout</span>
-              <span>+12.62% CAGR</span>
-            </div>
-            <div id="calc-yr5-val" class="text-2xl font-google font-medium text-[#137333] mt-1">£2,413 / year</div>
-            <p class="text-[11px] text-[#0d652d] mt-1">
-              Effective yield on initial cost expands to <span id="calc-yoc-val" class="font-bold">9.65%</span> by year 5.
-            </p>
-          </div>
+          <span class="text-xs font-semibold text-[#137333] bg-[#ceead6] px-2 py-1 rounded">+12.62% CAGR</span>
         </div>
       </div>
 
-      <!-- Sector & Country Breakdown (7 Cols) -->
-      <div class="lg:col-span-7 google-card p-6">
+      <!-- Portfolio Allocations Column -->
+      <div class="lg:col-span-7 google-card p-5">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg font-google font-normal text-[#202124]">Portfolio diversification</h2>
-          <div class="flex items-center space-x-2 text-xs font-medium">
-            <span class="px-2.5 py-0.5 rounded-full bg-[#e8f0fe] text-[#1a73e8]">50.27% US</span>
-            <span class="px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333]">49.73% Europe & UK</span>
+          <h2 class="text-sm font-medium text-[#202124]">Portfolio diversification</h2>
+          <div class="flex space-x-2 text-xs">
+            <span class="px-2 py-0.5 bg-[#e8f0fe] text-[#1a73e8] rounded-full font-medium" id="alloc-us-badge">50.0% US</span>
+            <span class="px-2 py-0.5 bg-[#e6f4ea] text-[#137333] rounded-full font-medium" id="alloc-eu-badge">50.0% Europe & UK</span>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Sector Breakdown -->
           <div>
             <div class="text-xs font-semibold text-[#5f6368] uppercase tracking-wider mb-2.5">Sector Allocation</div>
-            <div id="sector-list" class="space-y-2">
-              <!-- Rendered via JS -->
-            </div>
+            <div id="sector-list" class="space-y-2.5"></div>
           </div>
+
+          <!-- Country Breakdown -->
           <div>
             <div class="text-xs font-semibold text-[#5f6368] uppercase tracking-wider mb-2.5">Country Exposure</div>
-            <div id="country-list" class="space-y-2">
-              <!-- Rendered via JS -->
-            </div>
+            <div id="country-list" class="space-y-2.5"></div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Constituents Table Card -->
-    <div id="holdings" class="google-card p-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#dadce0]">
+    <!-- Annual Reconstitutions Archive Card -->
+    <div id="reconstitutions" class="google-card p-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#dadce0] gap-3">
         <div>
-          <h2 class="text-lg font-google font-normal text-[#202124]">Constituent holdings (2026 reconstitution)</h2>
-          <p class="text-xs text-[#5f6368] mt-0.5">50 stocks passing the 10-year continuity filter and median yield chop, weighted by float market cap</p>
+          <div class="flex items-center space-x-2">
+            <h2 class="text-base font-medium text-[#202124]">Annual Reconstitutions Archive (2021–2026)</h2>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#e8f0fe] text-[#1a73e8]">Point-in-Time Verified</span>
+          </div>
+          <p class="text-xs text-[#5f6368] mt-0.5">
+            Full audit of every March reconstitution executed across the FTSE 350, STOXX Europe 600, and S&P 500.
+          </p>
         </div>
-
-        <!-- Filter Chips & Search Input -->
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="setFilter('ALL')" id="filter-btn-all" class="google-chip active text-xs">All (50)</button>
-          <button onclick="setFilter('US')" id="filter-btn-us" class="google-chip text-xs">United States (25)</button>
-          <button onclick="setFilter('EU')" id="filter-btn-eu" class="google-chip text-xs">Europe & UK (25)</button>
-          
-          <input type="text" id="table-search" placeholder="Search company or ticker..."
-            class="bg-[#f1f3f4] border border-[#dadce0] rounded-full px-3.5 py-1.5 text-xs text-[#202124] placeholder-[#5f6368] outline-none focus:bg-white focus:border-[#1a73e8] w-52 transition">
+        <div class="text-xs text-[#70757a]">
+          Click any row or button to view that year's 50 constituent holdings
         </div>
       </div>
 
-      <!-- Table -->
-      <div class="overflow-x-auto mt-2">
-        <table class="w-full text-left border-collapse text-sm">
+      <div class="overflow-x-auto mt-3">
+        <table class="w-full text-left text-xs border-collapse">
           <thead>
-            <tr class="border-b border-[#dadce0] text-[11px] font-medium text-[#5f6368] uppercase tracking-wider">
-              <th onclick="handleSort('rank')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8]">#</th>
-              <th onclick="handleSort('ticker')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8]">Symbol</th>
-              <th onclick="handleSort('name')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8]">Company</th>
-              <th onclick="handleSort('country')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8]">Region</th>
-              <th onclick="handleSort('sector')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8]">Sector</th>
-              <th onclick="handleSort('weight')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8] text-right">Weight</th>
-              <th onclick="handleSort('yield')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8] text-right">Div Yield</th>
-              <th onclick="handleSort('cagr')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8] text-right">5Y Growth</th>
-              <th onclick="handleSort('roe')" class="py-3 px-3 cursor-pointer hover:text-[#1a73e8] text-right">ROE</th>
+            <tr class="border-b border-[#dadce0] text-[#5f6368] font-medium bg-[#f8f9fa]">
+              <th class="py-2.5 px-3">Reconstitution</th>
+              <th class="py-2.5 px-3">Effective Date</th>
+              <th class="py-2.5 px-3 text-right">Yield</th>
+              <th class="py-2.5 px-3 text-right">5Y Div CAGR</th>
+              <th class="py-2.5 px-3 text-right">Weighted ROE</th>
+              <th class="py-2.5 px-3 text-right">Turnover</th>
+              <th class="py-2.5 px-3">Entrants & Exits</th>
+              <th class="py-2.5 px-3 text-center">Action</th>
             </tr>
           </thead>
-          <tbody id="holdings-table-body" class="divide-y divide-[#f1f3f4] text-xs">
+          <tbody id="recons-summary-tbody" class="divide-y divide-[#f1f3f4]">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Constituents Table Card -->
+    <div id="constituents" class="google-card p-5">
+      
+      <!-- Table Header & Reconstitution Year Selector -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between pb-4 border-b border-[#dadce0] gap-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <h2 class="text-base font-medium text-[#202124]">Constituent holdings</h2>
+            <span id="active-year-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1a73e8] text-white">2026 Active Portfolio</span>
+          </div>
+          <p class="text-xs text-[#5f6368] mt-0.5">
+            50 stocks passing the 10-year continuity filter and median yield chop, weighted by float market cap.
+          </p>
+        </div>
+
+        <!-- Reconstitution Year Pills -->
+        <div class="flex items-center space-x-1.5 bg-[#f1f3f4] p-1 rounded-full text-xs font-medium self-start lg:self-auto overflow-x-auto">
+          <span class="text-[11px] text-[#70757a] px-2 hidden sm:inline">Year:</span>
+          <button onclick="setReconYear('2026')" id="year-btn-2026" class="year-pill active">2026</button>
+          <button onclick="setReconYear('2025')" id="year-btn-2025" class="year-pill">2025</button>
+          <button onclick="setReconYear('2024')" id="year-btn-2024" class="year-pill">2024</button>
+          <button onclick="setReconYear('2023')" id="year-btn-2023" class="year-pill">2023</button>
+          <button onclick="setReconYear('2022')" id="year-btn-2022" class="year-pill">2022</button>
+          <button onclick="setReconYear('2021')" id="year-btn-2021" class="year-pill">2021</button>
+        </div>
+      </div>
+
+      <!-- Year Context Banner -->
+      <div id="recon-context-banner" class="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-3.5 my-4 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+        <div>
+          <div class="flex items-center space-x-2 font-medium text-[#202124]">
+            <span id="banner-year-title" class="font-semibold text-[#1a73e8]">March 2026 Reconstitution</span>
+            <span>•</span>
+            <span id="banner-date" class="text-[#5f6368]">Monday, 23 March 2026</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-[#5f6368]">
+            <span>Indicative Yield: <strong id="banner-yield" class="text-[#137333] font-mono">5.23%</strong></span>
+            <span>•</span>
+            <span>5Y Div CAGR: <strong id="banner-cagr" class="text-[#202124] font-mono">+12.73%</strong></span>
+            <span>•</span>
+            <span>Weighted ROE: <strong id="banner-roe" class="text-[#202124] font-mono">31.41%</strong></span>
+            <span>•</span>
+            <span>Turnover: <strong id="banner-turnover" class="text-[#202124] font-mono">22 changes (44.0%)</strong></span>
+          </div>
+        </div>
+        <div id="banner-chips" class="flex flex-wrap items-center gap-1.5">
+          <!-- Additions and removals chips rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Region Filter & Search -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 gap-3">
+        <!-- Region Filter Pills -->
+        <div class="flex items-center space-x-2">
+          <button onclick="setFilter('ALL')" id="filter-btn-all" class="google-chip active text-xs">All (50)</button>
+          <button onclick="setFilter('US')" id="filter-btn-us" class="google-chip text-xs">United States (25)</button>
+          <button onclick="setFilter('EU')" id="filter-btn-eu" class="google-chip text-xs">Europe & UK (25)</button>
+        </div>
+
+        <!-- Search Bar in Table -->
+        <div class="relative w-full sm:w-64">
+          <input type="text" id="table-search" placeholder="Search company or ticker..." class="w-full bg-[#f1f3f4] border-0 text-xs px-3 py-1.5 rounded-lg focus:ring-1 focus:ring-[#1a73e8] outline-none">
+        </div>
+      </div>
+
+      <!-- Constituents Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-[#dadce0] text-[#5f6368] font-medium bg-[#f8f9fa]">
+              <th class="py-2.5 px-3 cursor-pointer hover:text-[#202124]" onclick="handleSort('rank')">#</th>
+              <th class="py-2.5 px-3 cursor-pointer hover:text-[#202124]" onclick="handleSort('ticker')">SYMBOL</th>
+              <th class="py-2.5 px-3 cursor-pointer hover:text-[#202124]" onclick="handleSort('name')">COMPANY</th>
+              <th class="py-2.5 px-3 cursor-pointer hover:text-[#202124]" onclick="handleSort('country')">REGION</th>
+              <th class="py-2.5 px-3 cursor-pointer hover:text-[#202124]" onclick="handleSort('sector')">SECTOR</th>
+              <th class="py-2.5 px-3 text-right cursor-pointer hover:text-[#202124]" onclick="handleSort('weight')">WEIGHT</th>
+              <th class="py-2.5 px-3 text-right cursor-pointer hover:text-[#202124]" onclick="handleSort('yield')">DIV YIELD</th>
+              <th class="py-2.5 px-3 text-right cursor-pointer hover:text-[#202124]" onclick="handleSort('cagr')">5Y GROWTH</th>
+              <th class="py-2.5 px-3 text-right cursor-pointer hover:text-[#202124]" onclick="handleSort('roe')">ROE</th>
+            </tr>
+          </thead>
+          <tbody id="holdings-table-body" class="divide-y divide-[#f1f3f4]">
             <!-- Rendered via JS -->
           </tbody>
         </table>
       </div>
 
-      <div class="flex flex-col sm:flex-row justify-between items-center pt-4 mt-2 border-t border-[#dadce0] text-xs text-[#5f6368]">
+      <!-- Table Footer Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-between pt-4 border-t border-[#dadce0] mt-3 gap-3 text-xs text-[#5f6368]">
         <span id="table-record-count">Showing 50 of 50 constituents</span>
-        <div class="flex space-x-2 mt-2 sm:mt-0">
-          <button onclick="downloadCSVFile()" class="text-[#1a73e8] hover:underline font-medium">Download CSV</button>
+        <div class="flex items-center space-x-4">
+          <button onclick="downloadCSVFile()" class="text-[#1a73e8] hover:underline font-medium" id="download-csv-btn">Download 2026 CSV</button>
           <span>•</span>
           <button onclick="copyT212Pie()" class="text-[#1a73e8] hover:underline font-medium">Copy Trading 212 Pie Config</button>
         </div>
       </div>
+
     </div>
 
-    <!-- Methodology Summary Card -->
-    <div class="google-card p-6 bg-[#f8f9fa]">
-      <h3 class="text-sm font-google font-medium text-[#202124] mb-2">Dow Jones U.S. Dividend 100 Funnel Rules</h3>
-      <p class="text-xs text-[#5f6368] leading-relaxed">
+    <!-- Methodological Card (Dow Jones 100 Rules) -->
+    <div class="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-5 text-xs text-[#5f6368] space-y-2">
+      <h3 class="font-medium text-[#202124] text-sm">Dow Jones U.S. Dividend 100 Funnel Rules</h3>
+      <p>
         The TXD50 index applies the Dow Jones U.S. Dividend 100 methodology across FTSE 350, STOXX Europe 600, and S&P 500 constituents. Step 1 strips out REITs and convertibles. Step 2 requires a minimum 10 consecutive years of dividend distributions. Step 3 enforces the median yield chop (cutting the bottom 50% lowest-yielding companies). Step 4 ranks survivors by cash flow to total debt, return on equity, dividend yield, and five-year dividend growth. Step 5 weights by float market cap with a 4.0% single stock cap and 25.0% sector cap.
       </p>
     </div>
@@ -504,11 +600,10 @@
   </div>
 
   <script>
-    const HOLDINGS = [{"rank": 1, "ticker": "PEP", "name": "PepsiCo, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 3.79, "cagr": 6.8, "roe": 52.0, "mcap": 242.2, "is_us": true}, {"rank": 2, "ticker": "HD", "name": "The Home Depot, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 2.88, "cagr": 8.5, "roe": 95.0, "mcap": 369.9, "is_us": true}, {"rank": 3, "ticker": "PG", "name": "Procter & Gamble Co.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 2.93, "cagr": 6.0, "roe": 32.5, "mcap": 326.6, "is_us": true}, {"rank": 4, "ticker": "VOLV-B.ST", "name": "Volvo AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Industrials", "weight": 4.0, "yield": 6.42, "cagr": 0.0, "roe": 24.5, "mcap": 50.2, "is_us": false}, {"rank": 5, "ticker": "BMW.DE", "name": "Bayerische Motoren Werke (BMW)", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 5.68, "cagr": 11.5, "roe": 13.5, "mcap": 68.2, "is_us": false}, {"rank": 6, "ticker": "MBG.DE", "name": "Mercedes-Benz Group AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 8.45, "cagr": 35.0, "roe": 14.8, "mcap": 77.3, "is_us": false}, {"rank": 7, "ticker": "ABBV", "name": "AbbVie Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.24, "cagr": 6.6, "roe": 45.0, "mcap": 223.1, "is_us": true}, {"rank": 8, "ticker": "CVX", "name": "Chevron Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 4.0, "yield": 3.43, "cagr": 6.0, "roe": 12.2, "mcap": 221.8, "is_us": true}, {"rank": 9, "ticker": "MRK", "name": "Merck & Co., Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 3.99, "yield": 2.91, "cagr": 6.7, "roe": 34.0, "mcap": 199.2, "is_us": true}, {"rank": 10, "ticker": "INGA.AS", "name": "ING Groep N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Financials", "weight": 3.94, "yield": 5.62, "cagr": 35.0, "roe": 14.5, "mcap": 41.9, "is_us": false}, {"rank": 11, "ticker": "CMCSA", "name": "Comcast Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Communication Services", "weight": 3.92, "yield": 4.33, "cagr": 7.8, "roe": 17.5, "mcap": 195.6, "is_us": true}, {"rank": 12, "ticker": "CS.PA", "name": "AXA S.A.", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Financials", "weight": 3.46, "yield": 5.7, "cagr": 24.1, "roe": 14.2, "mcap": 68.8, "is_us": false}, {"rank": 13, "ticker": "ISP.MI", "name": "Intesa Sanpaolo S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 3.46, "yield": 7.19, "cagr": 0.0, "roe": 16.8, "mcap": 60.6, "is_us": false}, {"rank": 14, "ticker": "NDA-SE.ST", "name": "Nordea Bank Abp", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 3.42, "yield": 6.23, "cagr": 35.0, "roe": 16.8, "mcap": 36.0, "is_us": false}, {"rank": 15, "ticker": "COLO-B.CO", "name": "Coloplast A/S", "country": "Denmark", "flag": "\ud83c\udde9\ud83c\uddf0", "sector": "Health Care", "weight": 3.2, "yield": 5.39, "cagr": 5.0, "roe": 45.0, "mcap": 21.1, "is_us": false}, {"rank": 16, "ticker": "NKE", "name": "NIKE, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 3.1, "yield": 3.09, "cagr": 9.3, "roe": 32.0, "mcap": 154.7, "is_us": true}, {"rank": 17, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 3.03, "yield": 4.36, "cagr": 8.3, "roe": 65.0, "mcap": 151.1, "is_us": true}, {"rank": 18, "ticker": "DNB.OL", "name": "DNB Bank ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Financials", "weight": 2.76, "yield": 5.78, "cagr": 14.8, "roe": 15.8, "mcap": 29.0, "is_us": false}, {"rank": 19, "ticker": "TXN", "name": "Texas Instruments Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.16, "yield": 2.97, "cagr": 7.7, "roe": 39.7, "mcap": 107.9, "is_us": true}, {"rank": 20, "ticker": "UPS", "name": "United Parcel Service", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 2.04, "yield": 6.84, "cagr": 10.1, "roe": 28.6, "mcap": 101.8, "is_us": true}, {"rank": 21, "ticker": "CA.PA", "name": "Carrefour S.A.", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Consumer Staples", "weight": 2.02, "yield": 7.54, "cagr": 35.0, "roe": 10.2, "mcap": 13.4, "is_us": false}, {"rank": 22, "ticker": "SWED-A.ST", "name": "Swedbank AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.92, "yield": 6.62, "cagr": 35.0, "roe": 17.2, "mcap": 20.2, "is_us": false}, {"rank": 23, "ticker": "BMY", "name": "Bristol-Myers Squibb Co.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 1.92, "yield": 4.33, "cagr": 6.2, "roe": 18.0, "mcap": 96.0, "is_us": true}, {"rank": 24, "ticker": "SHB-A.ST", "name": "Svenska Handelsbanken AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.74, "yield": 11.09, "cagr": 0.0, "roe": 13.8, "mcap": 18.3, "is_us": false}, {"rank": 25, "ticker": "ADP", "name": "Automatic Data Processing", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.63, "yield": 3.11, "cagr": 12.0, "roe": 78.0, "mcap": 81.2, "is_us": true}, {"rank": 26, "ticker": "OMV.VI", "name": "OMV AG", "country": "Austria", "flag": "\ud83c\udde6\ud83c\uddf9", "sector": "Energy", "weight": 1.54, "yield": 8.16, "cagr": 22.1, "roe": 14.2, "mcap": 10.2, "is_us": false}, {"rank": 27, "ticker": "ELISA.HE", "name": "Elisa Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Communication Services", "weight": 1.51, "yield": 5.5, "cagr": 4.9, "roe": 25.5, "mcap": 10.0, "is_us": false}, {"rank": 28, "ticker": "ORK.OL", "name": "Orkla ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Consumer Staples", "weight": 1.46, "yield": 8.72, "cagr": 30.9, "roe": 12.5, "mcap": 9.6, "is_us": false}, {"rank": 29, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.41, "yield": 6.45, "cagr": 4.1, "roe": 80.0, "mcap": 70.2, "is_us": true}, {"rank": 30, "ticker": "AV.L", "name": "Aviva plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.22, "yield": 6.05, "cagr": 23.5, "roe": 12.5, "mcap": 12.9, "is_us": false}, {"rank": 31, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.22, "yield": 9.09, "cagr": 4.1, "roe": 18.2, "mcap": 12.8, "is_us": false}, {"rank": 32, "ticker": "EOG", "name": "EOG Resources, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.15, "yield": 2.88, "cagr": 21.6, "roe": 24.0, "mcap": 57.2, "is_us": true}, {"rank": 33, "ticker": "TGT", "name": "Target Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.01, "yield": 4.01, "cagr": 11.0, "roe": 28.5, "mcap": 50.3, "is_us": true}, {"rank": 34, "ticker": "ADM.L", "name": "Admiral Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.88, "yield": 7.36, "cagr": 9.9, "roe": 36.4, "mcap": 9.2, "is_us": false}, {"rank": 35, "ticker": "TW.L", "name": "Taylor Wimpey plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.86, "yield": 10.65, "cagr": 0.0, "roe": 9.2, "mcap": 5.7, "is_us": false}, {"rank": 36, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.83, "yield": 5.15, "cagr": 3.1, "roe": 75.0, "mcap": 41.4, "is_us": true}, {"rank": 37, "ticker": "GIS", "name": "General Mills, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.82, "yield": 6.57, "cagr": 4.0, "roe": 26.0, "mcap": 40.8, "is_us": true}, {"rank": 38, "ticker": "PAYX", "name": "Paychex, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 0.79, "yield": 4.67, "cagr": 11.7, "roe": 44.0, "mcap": 39.5, "is_us": true}, {"rank": 39, "ticker": "RAND.AS", "name": "Randstad N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Industrials", "weight": 0.73, "yield": 6.99, "cagr": 0.0, "roe": 15.2, "mcap": 4.8, "is_us": false}, {"rank": 40, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 0.63, "yield": 6.55, "cagr": 2.7, "roe": 18.5, "mcap": 31.3, "is_us": true}, {"rank": 41, "ticker": "VALMT.HE", "name": "Valmet Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Industrials", "weight": 0.62, "yield": 5.46, "cagr": 11.0, "roe": 15.2, "mcap": 4.1, "is_us": false}, {"rank": 42, "ticker": "BMED.MI", "name": "Banca Mediolanum S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 0.57, "yield": 7.48, "cagr": 0.0, "roe": 22.0, "mcap": 6.0, "is_us": false}, {"rank": 43, "ticker": "FNTN.DE", "name": "Freenet AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Communication Services", "weight": 0.56, "yield": 7.5, "cagr": 35.0, "roe": 16.5, "mcap": 3.7, "is_us": false}, {"rank": 44, "ticker": "BME.L", "name": "B&M European Value Retail", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.45, "yield": 7.93, "cagr": -24.7, "roe": 28.5, "mcap": 3.0, "is_us": false}, {"rank": 45, "ticker": "HPQ", "name": "HP Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 0.43, "yield": 6.45, "cagr": 9.7, "roe": 65.0, "mcap": 21.4, "is_us": true}, {"rank": 46, "ticker": "TROW", "name": "T. Rowe Price Group", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 0.4, "yield": 5.93, "cagr": 6.2, "roe": 20.5, "mcap": 20.5, "is_us": true}, {"rank": 47, "ticker": "DRI", "name": "Darden Restaurants", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.36, "yield": 2.91, "cagr": 35.0, "roe": 42.0, "mcap": 18.0, "is_us": true}, {"rank": 48, "ticker": "OMC", "name": "Omnicom Group Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Communication Services", "weight": 0.35, "yield": 4.0, "cagr": 2.5, "roe": 38.0, "mcap": 17.4, "is_us": true}, {"rank": 49, "ticker": "GPC", "name": "Genuine Parts Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.3, "yield": 4.31, "cagr": 5.5, "roe": 28.5, "mcap": 15.0, "is_us": true}, {"rank": 50, "ticker": "MONY.L", "name": "MONY Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Communication Services", "weight": 0.18, "yield": 7.93, "cagr": 1.4, "roe": 42.0, "mcap": 1.2, "is_us": false}];
+    const ANNUAL_RECONS = {"2021": {"year": "2021", "date": "2021-03-22", "count": 50, "yield": 4.99, "cagr": 7.99, "roe": 28.65, "turnover_count": 0, "turnover_pct": 0.0, "added": ["A2A.MI", "ACS.MC", "ADM.L", "AGS.BR", "ALV.DE", "AMGN", "AVGO", "BATS.L", "BAYN.DE", "COP", "CSCO", "CVX", "DNB.OL", "ENG.MC", "FAST", "GD", "GJF.OL", "IBM", "IGG.L", "IMB.L", "JNJ", "KMB", "KO", "KPN.AS", "LGEN.L", "LMT", "LYB", "MAP.MC", "MMM", "MO", "MONY.L", "MRK", "OKE", "OMC", "OMV.VI", "PAYX", "PEP", "PM", "PRU", "PSX", "RED.MC", "REP.MC", "RIO.L", "TEL.OL", "TEL2-B.ST", "TTE.PA", "VLO", "XOM", "YAR.OL", "ZURN.SW"], "removed": [], "holdings": [{"rank": 1, "ticker": "RIO.L", "name": "Rio Tinto plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Materials", "weight": 4.0, "yield": 7.56, "cagr": 23.3, "roe": 19.3, "mcap": 72.6, "is_us": false}, {"rank": 2, "ticker": "BATS.L", "name": "British American Tobacco", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 4.0, "yield": 7.44, "cagr": 4.2, "roe": 12.0, "mcap": 45.5, "is_us": false}, {"rank": 3, "ticker": "TTE.PA", "name": "TotalEnergies SE", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Energy", "weight": 4.0, "yield": 6.75, "cagr": 1.9, "roe": 18.2, "mcap": 67.2, "is_us": false}, {"rank": 4, "ticker": "ZURN.SW", "name": "Zurich Insurance Group", "country": "Switzerland", "flag": "\ud83c\udde8\ud83c\udded", "sector": "Financials", "weight": 4.0, "yield": 5.06, "cagr": 3.3, "roe": 25.7, "mcap": 53.1, "is_us": false}, {"rank": 5, "ticker": "ALV.DE", "name": "Allianz SE", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Financials", "weight": 4.0, "yield": 4.53, "cagr": 7.0, "roe": 16.2, "mcap": 61.8, "is_us": false}, {"rank": 6, "ticker": "BAYN.DE", "name": "Bayer AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Health Care", "weight": 4.0, "yield": 5.26, "cagr": 4.8, "roe": 12.5, "mcap": 26.8, "is_us": false}, {"rank": 7, "ticker": "PEP", "name": "PepsiCo, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 2.97, "cagr": 7.8, "roe": 52.0, "mcap": 222.4, "is_us": true}, {"rank": 8, "ticker": "JNJ", "name": "Johnson & Johnson", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 2.52, "cagr": 6.1, "roe": 26.5, "mcap": 208.2, "is_us": true}, {"rank": 9, "ticker": "KO", "name": "The Coca-Cola Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 3.93, "yield": 3.24, "cagr": 4.2, "roe": 42.0, "mcap": 143.0, "is_us": true}, {"rank": 10, "ticker": "XOM", "name": "Exxon Mobil Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 3.92, "yield": 6.22, "cagr": 3.6, "roe": 16.5, "mcap": 142.8, "is_us": true}, {"rank": 11, "ticker": "MRK", "name": "Merck & Co., Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 3.54, "yield": 3.25, "cagr": 6.7, "roe": 34.0, "mcap": 129.0, "is_us": true}, {"rank": 12, "ticker": "DNB.OL", "name": "DNB Bank ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Financials", "weight": 3.17, "yield": 4.58, "cagr": 17.2, "roe": 15.8, "mcap": 18.3, "is_us": false}, {"rank": 13, "ticker": "TEL.OL", "name": "Telenor ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Communication Services", "weight": 3.11, "yield": 5.84, "cagr": 3.6, "roe": 12.5, "mcap": 18.0, "is_us": false}, {"rank": 14, "ticker": "CVX", "name": "Chevron Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 3.1, "yield": 5.03, "cagr": 3.8, "roe": 12.2, "mcap": 112.8, "is_us": true}, {"rank": 15, "ticker": "AVGO", "name": "Broadcom Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.99, "yield": 2.88, "cagr": 35.0, "roe": 44.2, "mcap": 108.7, "is_us": true}, {"rank": 16, "ticker": "CSCO", "name": "Cisco Systems, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.85, "yield": 2.86, "cagr": 11.4, "roe": 27.3, "mcap": 103.8, "is_us": true}, {"rank": 17, "ticker": "IBM", "name": "International Business Machines", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.61, "yield": 4.99, "cagr": 4.6, "roe": 32.0, "mcap": 95.1, "is_us": true}, {"rank": 18, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 2.55, "yield": 6.46, "cagr": 8.3, "roe": 18.2, "mcap": 14.8, "is_us": false}, {"rank": 19, "ticker": "AMGN", "name": "Amgen Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 2.33, "yield": 2.63, "cagr": 14.2, "roe": 85.0, "mcap": 85.0, "is_us": true}, {"rank": 20, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 2.29, "yield": 5.3, "cagr": -1.2, "roe": 65.0, "mcap": 83.4, "is_us": true}, {"rank": 21, "ticker": "IMB.L", "name": "Imperial Brands plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 2.02, "yield": 9.34, "cagr": -0.5, "roe": 29.0, "mcap": 11.7, "is_us": false}, {"rank": 22, "ticker": "LMT", "name": "Lockheed Martin Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.91, "yield": 2.8, "cagr": 9.7, "roe": 80.2, "mcap": 69.6, "is_us": true}, {"rank": 23, "ticker": "KPN.AS", "name": "Koninklijke KPN N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Communication Services", "weight": 1.65, "yield": 4.33, "cagr": 2.0, "roe": 24.0, "mcap": 9.6, "is_us": false}, {"rank": 24, "ticker": "MMM", "name": "3M Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.6, "yield": 3.11, "cagr": 7.1, "roe": 41.0, "mcap": 58.3, "is_us": true}, {"rank": 25, "ticker": "YAR.OL", "name": "Yara International ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Materials", "weight": 1.6, "yield": 7.48, "cagr": 20.5, "roe": 10.2, "mcap": 9.3, "is_us": false}, {"rank": 26, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.54, "yield": 6.58, "cagr": 8.9, "roe": 80.0, "mcap": 56.2, "is_us": true}, {"rank": 27, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.54, "yield": 3.27, "cagr": 4.1, "roe": 75.0, "mcap": 56.1, "is_us": true}, {"rank": 28, "ticker": "ADM.L", "name": "Admiral Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.48, "yield": 4.94, "cagr": 8.1, "roe": 36.4, "mcap": 8.6, "is_us": false}, {"rank": 29, "ticker": "RED.MC", "name": "Redeia Corporaci\u00f3n (Red El\u00e9ctrica)", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Utilities", "weight": 1.48, "yield": 7.32, "cagr": 6.6, "roe": 11.8, "mcap": 8.6, "is_us": false}, {"rank": 30, "ticker": "OMV.VI", "name": "OMV AG", "country": "Austria", "flag": "\ud83c\udde6\ud83c\uddf9", "sector": "Energy", "weight": 1.29, "yield": 4.1, "cagr": 7.0, "roe": 14.2, "mcap": 7.5, "is_us": false}, {"rank": 31, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 1.24, "yield": 3.96, "cagr": 12.4, "roe": 18.5, "mcap": 45.3, "is_us": true}, {"rank": 32, "ticker": "GJF.OL", "name": "Gjensidige Forsikring ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Financials", "weight": 1.2, "yield": 7.11, "cagr": 19.9, "roe": 18.5, "mcap": 6.9, "is_us": false}, {"rank": 33, "ticker": "COP", "name": "ConocoPhillips", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.18, "yield": 3.25, "cagr": -7.1, "roe": 18.5, "mcap": 42.8, "is_us": true}, {"rank": 34, "ticker": "PAYX", "name": "Paychex, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.13, "yield": 2.57, "cagr": 8.6, "roe": 44.0, "mcap": 41.2, "is_us": true}, {"rank": 35, "ticker": "AGS.BR", "name": "Ageas SA/NV", "country": "Belgium", "flag": "\ud83c\udde7\ud83c\uddea", "sector": "Financials", "weight": 1.04, "yield": 5.37, "cagr": 11.3, "roe": 12.5, "mcap": 6.0, "is_us": false}, {"rank": 36, "ticker": "GD", "name": "General Dynamics Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.0, "yield": 2.49, "cagr": 9.8, "roe": 18.5, "mcap": 36.6, "is_us": true}, {"rank": 37, "ticker": "REP.MC", "name": "Repsol, S.A.", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Energy", "weight": 0.98, "yield": 7.39, "cagr": -3.9, "roe": 12.8, "mcap": 5.7, "is_us": false}, {"rank": 38, "ticker": "TEL2-B.ST", "name": "Tele2 AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Communication Services", "weight": 0.95, "yield": 7.99, "cagr": -8.9, "roe": 18.5, "mcap": 5.5, "is_us": false}, {"rank": 39, "ticker": "PRU", "name": "Prudential Financial", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 0.9, "yield": 4.9, "cagr": 11.7, "roe": 11.2, "mcap": 32.7, "is_us": true}, {"rank": 40, "ticker": "OKE", "name": "ONEOK, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.74, "yield": 7.71, "cagr": 8.9, "roe": 21.5, "mcap": 26.9, "is_us": true}, {"rank": 41, "ticker": "IGG.L", "name": "IG Group Holdings", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.67, "yield": 4.89, "cagr": 8.9, "roe": 22.0, "mcap": 3.9, "is_us": false}, {"rank": 42, "ticker": "ENG.MC", "name": "Enag\u00e1s, S.A.", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Utilities", "weight": 0.67, "yield": 9.06, "cagr": 4.5, "roe": 8.5, "mcap": 3.9, "is_us": false}, {"rank": 43, "ticker": "A2A.MI", "name": "A2A S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Utilities", "weight": 0.65, "yield": 5.25, "cagr": 16.4, "roe": 10.8, "mcap": 3.8, "is_us": false}, {"rank": 44, "ticker": "ACS.MC", "name": "ACS Actividades de Construcci\u00f3n", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Industrials", "weight": 0.57, "yield": 7.6, "cagr": 11.7, "roe": 13.5, "mcap": 3.3, "is_us": false}, {"rank": 45, "ticker": "MAP.MC", "name": "Mapfre, S.A.", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Financials", "weight": 0.56, "yield": 7.64, "cagr": -0.5, "roe": 11.5, "mcap": 3.2, "is_us": false}, {"rank": 46, "ticker": "FAST", "name": "Fastenal Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 0.5, "yield": 2.98, "cagr": 20.2, "roe": 34.5, "mcap": 18.4, "is_us": true}, {"rank": 47, "ticker": "OMC", "name": "Omnicom Group Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Communication Services", "weight": 0.49, "yield": 3.43, "cagr": 5.8, "roe": 38.0, "mcap": 17.9, "is_us": true}, {"rank": 48, "ticker": "PSX", "name": "Phillips 66", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.43, "yield": 4.47, "cagr": 10.0, "roe": 18.5, "mcap": 15.7, "is_us": true}, {"rank": 49, "ticker": "MONY.L", "name": "MONY Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Communication Services", "weight": 0.36, "yield": 4.23, "cagr": 7.3, "roe": 42.0, "mcap": 2.1, "is_us": false}, {"rank": 50, "ticker": "VLO", "name": "Valero Energy Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.23, "yield": 5.42, "cagr": 15.6, "roe": 22.0, "mcap": 8.5, "is_us": true}]}, "2022": {"year": "2022", "date": "2022-03-21", "count": 50, "yield": 6.09, "cagr": 10.64, "roe": 27.87, "turnover_count": 23, "turnover_pct": 46.0, "added": ["ABBV", "BMED.MI", "CMI", "DRI", "ELUX-B.ST", "ENEL.MI", "EOG", "FNTN.DE", "G.MI", "GALP.LS", "INTC", "ISP.MI", "KMI", "NDA-SE.ST", "NVG.LS", "ORA.PA", "PCAR", "RAND.AS", "SEB-A.ST", "SREN.SW", "TROW", "VFC", "VOLV-B.ST"], "removed": ["A2A.MI", "AGS.BR", "ALV.DE", "AVGO", "BATS.L", "BAYN.DE", "COP", "CVX", "DNB.OL", "ENG.MC", "FAST", "GD", "GJF.OL", "JNJ", "KO", "KPN.AS", "LMT", "MAP.MC", "OMV.VI", "PAYX", "RED.MC", "REP.MC", "ZURN.SW"], "holdings": [{"rank": 1, "ticker": "RIO.L", "name": "Rio Tinto plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Materials", "weight": 4.0, "yield": 13.03, "cagr": 35.0, "roe": 19.3, "mcap": 78.3, "is_us": false}, {"rank": 2, "ticker": "ENEL.MI", "name": "Enel S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Utilities", "weight": 4.0, "yield": 6.4, "cagr": 8.3, "roe": 13.8, "mcap": 42.5, "is_us": false}, {"rank": 3, "ticker": "TTE.PA", "name": "TotalEnergies SE", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Energy", "weight": 4.0, "yield": 5.77, "cagr": 1.6, "roe": 18.2, "mcap": 77.4, "is_us": false}, {"rank": 4, "ticker": "XOM", "name": "Exxon Mobil Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 4.0, "yield": 4.26, "cagr": 3.1, "roe": 16.5, "mcap": 210.0, "is_us": true}, {"rank": 5, "ticker": "ABBV", "name": "AbbVie Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.32, "cagr": 17.7, "roe": 45.0, "mcap": 174.1, "is_us": true}, {"rank": 6, "ticker": "PEP", "name": "PepsiCo, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 2.65, "cagr": 7.4, "roe": 52.0, "mcap": 262.4, "is_us": true}, {"rank": 7, "ticker": "CSCO", "name": "Cisco Systems, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 4.0, "yield": 2.64, "cagr": 7.3, "roe": 27.3, "mcap": 115.6, "is_us": true}, {"rank": 8, "ticker": "VOLV-B.ST", "name": "Volvo AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Industrials", "weight": 4.0, "yield": 13.34, "cagr": 35.0, "roe": 24.5, "mcap": 32.0, "is_us": false}, {"rank": 9, "ticker": "MRK", "name": "Merck & Co., Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.39, "cagr": 8.6, "roe": 34.0, "mcap": 137.9, "is_us": true}, {"rank": 10, "ticker": "ISP.MI", "name": "Intesa Sanpaolo S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 3.6, "yield": 10.04, "cagr": 8.2, "roe": 16.8, "mcap": 25.2, "is_us": false}, {"rank": 11, "ticker": "IBM", "name": "International Business Machines", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 3.45, "yield": 5.01, "cagr": 3.7, "roe": 32.0, "mcap": 97.6, "is_us": true}, {"rank": 12, "ticker": "NDA-SE.ST", "name": "Nordea Bank Abp", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 3.31, "yield": 7.41, "cagr": 2.1, "roe": 16.8, "mcap": 23.2, "is_us": false}, {"rank": 13, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 3.09, "yield": 3.93, "cagr": -6.4, "roe": 65.0, "mcap": 87.2, "is_us": true}, {"rank": 14, "ticker": "SREN.SW", "name": "Swiss Re AG", "country": "Switzerland", "flag": "\ud83c\udde8\ud83c\udded", "sector": "Financials", "weight": 3.06, "yield": 6.83, "cagr": 5.1, "roe": 15.2, "mcap": 21.4, "is_us": false}, {"rank": 15, "ticker": "ORA.PA", "name": "Orange S.A.", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Communication Services", "weight": 2.92, "yield": 7.52, "cagr": 5.9, "roe": 8.8, "mcap": 20.5, "is_us": false}, {"rank": 16, "ticker": "AMGN", "name": "Amgen Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 2.85, "yield": 3.06, "cagr": 11.7, "roe": 85.0, "mcap": 80.4, "is_us": true}, {"rank": 17, "ticker": "INTC", "name": "Intel Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.42, "yield": 2.97, "cagr": 6.3, "roe": 21.5, "mcap": 68.3, "is_us": true}, {"rank": 18, "ticker": "G.MI", "name": "Assicurazioni Generali S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 2.39, "yield": 7.85, "cagr": 15.3, "roe": 14.2, "mcap": 16.7, "is_us": false}, {"rank": 19, "ticker": "TEL.OL", "name": "Telenor ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Communication Services", "weight": 2.24, "yield": 6.95, "cagr": 3.7, "roe": 12.5, "mcap": 15.7, "is_us": false}, {"rank": 20, "ticker": "SEB-A.ST", "name": "Skandinaviska Enskilda Banken", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 2.11, "yield": 7.47, "cagr": 9.3, "roe": 15.8, "mcap": 14.8, "is_us": false}, {"rank": 21, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 2.11, "yield": 6.54, "cagr": 5.0, "roe": 18.2, "mcap": 14.8, "is_us": false}, {"rank": 22, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 2.01, "yield": 6.74, "cagr": 8.0, "roe": 80.0, "mcap": 56.9, "is_us": true}, {"rank": 23, "ticker": "ELUX-B.ST", "name": "Electrolux AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 1.93, "yield": 8.83, "cagr": 30.9, "roe": 4.0, "mcap": 13.5, "is_us": false}, {"rank": 24, "ticker": "IMB.L", "name": "Imperial Brands plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 1.82, "yield": 8.67, "cagr": -2.2, "roe": 29.0, "mcap": 12.7, "is_us": false}, {"rank": 25, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.8, "yield": 3.79, "cagr": 4.2, "roe": 75.0, "mcap": 50.9, "is_us": true}, {"rank": 26, "ticker": "EOG", "name": "EOG Resources, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.79, "yield": 4.89, "cagr": 35.0, "roe": 24.0, "mcap": 50.5, "is_us": true}, {"rank": 27, "ticker": "RAND.AS", "name": "Randstad N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Industrials", "weight": 1.75, "yield": 5.5, "cagr": 14.0, "roe": 15.2, "mcap": 12.2, "is_us": false}, {"rank": 28, "ticker": "MMM", "name": "3M Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.62, "yield": 3.99, "cagr": 5.7, "roe": 38.5, "mcap": 45.8, "is_us": true}, {"rank": 29, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 1.59, "yield": 4.31, "cagr": 5.9, "roe": 18.5, "mcap": 44.9, "is_us": true}, {"rank": 30, "ticker": "PRU", "name": "Prudential Financial", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.48, "yield": 4.01, "cagr": 10.3, "roe": 11.2, "mcap": 41.8, "is_us": true}, {"rank": 31, "ticker": "YAR.OL", "name": "Yara International ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Materials", "weight": 1.36, "yield": 8.86, "cagr": 21.7, "roe": 10.2, "mcap": 9.5, "is_us": false}, {"rank": 32, "ticker": "OKE", "name": "ONEOK, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.34, "yield": 5.46, "cagr": 8.7, "roe": 21.5, "mcap": 38.0, "is_us": true}, {"rank": 33, "ticker": "TROW", "name": "T. Rowe Price Group", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.23, "yield": 5.11, "cagr": 27.7, "roe": 20.5, "mcap": 34.7, "is_us": true}, {"rank": 34, "ticker": "ADM.L", "name": "Admiral Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.07, "yield": 9.46, "cagr": 16.6, "roe": 36.4, "mcap": 7.5, "is_us": false}, {"rank": 35, "ticker": "PCAR", "name": "PACCAR Inc", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.07, "yield": 3.22, "cagr": 12.9, "roe": 26.5, "mcap": 30.1, "is_us": true}, {"rank": 36, "ticker": "GALP.LS", "name": "Galp Energia, SGPS, S.A.", "country": "Portugal", "flag": "\ud83c\uddf5\ud83c\uddf9", "sector": "Energy", "weight": 0.98, "yield": 5.34, "cagr": 5.6, "roe": 16.8, "mcap": 6.9, "is_us": false}, {"rank": 37, "ticker": "TEL2-B.ST", "name": "Tele2 AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Communication Services", "weight": 0.91, "yield": 6.89, "cagr": 11.8, "roe": 18.5, "mcap": 6.4, "is_us": false}, {"rank": 38, "ticker": "KMI", "name": "Kinder Morgan, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.9, "yield": 5.98, "cagr": 16.7, "roe": 8.5, "mcap": 25.4, "is_us": true}, {"rank": 39, "ticker": "VFC", "name": "V.F. Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.71, "yield": 3.51, "cagr": 5.9, "roe": 26.5, "mcap": 20.0, "is_us": true}, {"rank": 40, "ticker": "OMC", "name": "Omnicom Group Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Communication Services", "weight": 0.69, "yield": 3.34, "cagr": 4.9, "roe": 38.0, "mcap": 19.4, "is_us": true}, {"rank": 41, "ticker": "CMI", "name": "Cummins Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 0.6, "yield": 2.76, "cagr": 7.1, "roe": 24.5, "mcap": 17.0, "is_us": true}, {"rank": 42, "ticker": "PSX", "name": "Phillips 66", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.56, "yield": 4.51, "cagr": 7.6, "roe": 18.5, "mcap": 15.7, "is_us": true}, {"rank": 43, "ticker": "IGG.L", "name": "IG Group Holdings", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.5, "yield": 5.49, "cagr": 5.9, "roe": 22.0, "mcap": 3.5, "is_us": false}, {"rank": 44, "ticker": "FNTN.DE", "name": "Freenet AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Communication Services", "weight": 0.48, "yield": 6.85, "cagr": 1.3, "roe": 16.5, "mcap": 3.4, "is_us": false}, {"rank": 45, "ticker": "ACS.MC", "name": "ACS Actividades de Construcci\u00f3n", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Industrials", "weight": 0.43, "yield": 7.28, "cagr": 8.6, "roe": 13.5, "mcap": 3.0, "is_us": false}, {"rank": 46, "ticker": "DRI", "name": "Darden Restaurants", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.41, "yield": 3.19, "cagr": 13.9, "roe": 42.0, "mcap": 11.6, "is_us": true}, {"rank": 47, "ticker": "NVG.LS", "name": "The Navigator Company, S.A.", "country": "Portugal", "flag": "\ud83c\uddf5\ud83c\uddf9", "sector": "Materials", "weight": 0.4, "yield": 6.4, "cagr": -2.4, "roe": 18.5, "mcap": 2.8, "is_us": false}, {"rank": 48, "ticker": "BMED.MI", "name": "Banca Mediolanum S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 0.4, "yield": 13.31, "cagr": 27.5, "roe": 22.0, "mcap": 2.8, "is_us": false}, {"rank": 49, "ticker": "VLO", "name": "Valero Energy Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.39, "yield": 4.16, "cagr": 9.4, "roe": 22.0, "mcap": 11.0, "is_us": true}, {"rank": 50, "ticker": "MONY.L", "name": "MONY Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Communication Services", "weight": 0.22, "yield": 5.76, "cagr": 4.6, "roe": 42.0, "mcap": 1.5, "is_us": false}]}, "2023": {"year": "2023", "date": "2023-03-20", "count": 50, "yield": 6.33, "cagr": 14.15, "roe": 26.89, "turnover_count": 21, "turnover_pct": 42.0, "added": ["ADEN.SW", "AGS.BR", "BATS.L", "BME.L", "BMW.DE", "COP", "ENI.MI", "EQNR.OL", "HPQ", "KESKOB.HE", "MBG.DE", "MS", "NEM", "OMV.VI", "PNC", "SAMPO.HE", "TFC", "TW.L", "UPS", "USB", "WMB"], "removed": ["CMI", "CSCO", "ELUX-B.ST", "FNTN.DE", "G.MI", "GALP.LS", "INTC", "ISP.MI", "MONY.L", "MRK", "NDA-SE.ST", "OMC", "ORA.PA", "PEP", "SEB-A.ST", "SREN.SW", "TEL.OL", "TEL2-B.ST", "VFC", "VLO", "XOM"], "holdings": [{"rank": 1, "ticker": "RIO.L", "name": "Rio Tinto plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Materials", "weight": 4.0, "yield": 7.59, "cagr": 13.9, "roe": 19.3, "mcap": 72.3, "is_us": false}, {"rank": 2, "ticker": "MBG.DE", "name": "Mercedes-Benz Group AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 7.23, "cagr": 9.0, "roe": 14.8, "mcap": 105.1, "is_us": false}, {"rank": 3, "ticker": "TTE.PA", "name": "TotalEnergies SE", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Energy", "weight": 4.0, "yield": 6.87, "cagr": 8.3, "roe": 18.2, "mcap": 91.1, "is_us": false}, {"rank": 4, "ticker": "VOLV-B.ST", "name": "Volvo AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Industrials", "weight": 4.0, "yield": 6.57, "cagr": 32.0, "roe": 24.5, "mcap": 34.5, "is_us": false}, {"rank": 5, "ticker": "BMW.DE", "name": "Bayerische Motoren Werke (BMW)", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 6.07, "cagr": 10.6, "roe": 13.5, "mcap": 86.1, "is_us": false}, {"rank": 6, "ticker": "ABBV", "name": "AbbVie Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.66, "cagr": 16.8, "roe": 45.0, "mcap": 169.8, "is_us": true}, {"rank": 7, "ticker": "UPS", "name": "United Parcel Service", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 4.0, "yield": 3.37, "cagr": 12.7, "roe": 28.6, "mcap": 194.9, "is_us": true}, {"rank": 8, "ticker": "EQNR.OL", "name": "Equinor ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Energy", "weight": 4.0, "yield": 7.94, "cagr": 26.4, "roe": 22.5, "mcap": 48.0, "is_us": false}, {"rank": 9, "ticker": "BATS.L", "name": "British American Tobacco", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 4.0, "yield": 7.34, "cagr": 16.8, "roe": 12.0, "mcap": 47.7, "is_us": false}, {"rank": 10, "ticker": "ENEL.MI", "name": "Enel S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Utilities", "weight": 4.0, "yield": 7.24, "cagr": 14.9, "roe": 13.8, "mcap": 39.3, "is_us": false}, {"rank": 11, "ticker": "IBM", "name": "International Business Machines", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 4.0, "yield": 5.24, "cagr": 2.8, "roe": 32.0, "mcap": 95.9, "is_us": true}, {"rank": 12, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 3.72, "yield": 5.23, "cagr": -1.0, "roe": 65.0, "mcap": 89.2, "is_us": true}, {"rank": 13, "ticker": "AMGN", "name": "Amgen Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 3.34, "yield": 3.39, "cagr": 10.8, "roe": 85.0, "mcap": 79.9, "is_us": true}, {"rank": 14, "ticker": "COP", "name": "ConocoPhillips", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 3.29, "yield": 5.24, "cagr": 35.0, "roe": 18.5, "mcap": 78.9, "is_us": true}, {"rank": 15, "ticker": "MS", "name": "Morgan Stanley", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 3.2, "yield": 3.53, "cagr": 26.1, "roe": 13.8, "mcap": 76.6, "is_us": true}, {"rank": 16, "ticker": "ENI.MI", "name": "Eni S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Energy", "weight": 2.47, "yield": 8.93, "cagr": 6.4, "roe": 12.4, "mcap": 19.7, "is_us": false}, {"rank": 17, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 2.26, "yield": 3.63, "cagr": 3.6, "roe": 75.0, "mcap": 54.1, "is_us": true}, {"rank": 18, "ticker": "SAMPO.HE", "name": "Sampo Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Financials", "weight": 2.14, "yield": 10.64, "cagr": 12.3, "roe": 14.5, "mcap": 17.0, "is_us": false}, {"rank": 19, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 2.09, "yield": 7.99, "cagr": 6.9, "roe": 80.0, "mcap": 50.2, "is_us": true}, {"rank": 20, "ticker": "IMB.L", "name": "Imperial Brands plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 1.9, "yield": 7.4, "cagr": -3.7, "roe": 29.0, "mcap": 15.1, "is_us": false}, {"rank": 21, "ticker": "EOG", "name": "EOG Resources, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.82, "yield": 8.42, "cagr": 35.0, "roe": 24.0, "mcap": 43.5, "is_us": true}, {"rank": 22, "ticker": "PNC", "name": "PNC Financial Services", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.67, "yield": 4.71, "cagr": 16.5, "roe": 12.2, "mcap": 40.0, "is_us": true}, {"rank": 23, "ticker": "USB", "name": "U.S. Bancorp", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.63, "yield": 5.46, "cagr": 10.1, "roe": 11.5, "mcap": 39.1, "is_us": true}, {"rank": 24, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.57, "yield": 8.12, "cagr": 5.0, "roe": 18.2, "mcap": 12.5, "is_us": false}, {"rank": 25, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 1.55, "yield": 11.43, "cagr": 21.9, "roe": 18.5, "mcap": 37.2, "is_us": true}, {"rank": 26, "ticker": "PCAR", "name": "PACCAR Inc", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.49, "yield": 4.0, "cagr": 13.9, "roe": 26.5, "mcap": 35.8, "is_us": true}, {"rank": 27, "ticker": "RAND.AS", "name": "Randstad N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Industrials", "weight": 1.48, "yield": 8.8, "cagr": 21.5, "roe": 15.2, "mcap": 11.8, "is_us": false}, {"rank": 28, "ticker": "TFC", "name": "Truist Financial Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.42, "yield": 6.6, "cagr": 8.9, "roe": 9.2, "mcap": 34.1, "is_us": true}, {"rank": 29, "ticker": "OKE", "name": "ONEOK, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.41, "yield": 6.19, "cagr": 5.5, "roe": 21.5, "mcap": 33.7, "is_us": true}, {"rank": 30, "ticker": "HPQ", "name": "HP Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 1.38, "yield": 3.64, "cagr": 13.5, "roe": 65.0, "mcap": 33.0, "is_us": true}, {"rank": 31, "ticker": "MMM", "name": "3M Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.34, "yield": 5.72, "cagr": 4.1, "roe": 28.0, "mcap": 32.1, "is_us": true}, {"rank": 32, "ticker": "PRU", "name": "Prudential Financial", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.21, "yield": 6.04, "cagr": 9.0, "roe": 11.2, "mcap": 28.9, "is_us": true}, {"rank": 33, "ticker": "YAR.OL", "name": "Yara International ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Materials", "weight": 1.18, "yield": 8.93, "cagr": 32.0, "roe": 10.2, "mcap": 9.4, "is_us": false}, {"rank": 34, "ticker": "TROW", "name": "T. Rowe Price Group", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.07, "yield": 4.48, "cagr": 14.9, "roe": 20.5, "mcap": 25.6, "is_us": true}, {"rank": 35, "ticker": "BME.L", "name": "B&M European Value Retail", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 1.04, "yield": 7.83, "cagr": 35.0, "roe": 28.5, "mcap": 8.3, "is_us": false}, {"rank": 36, "ticker": "KMI", "name": "Kinder Morgan, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.97, "yield": 6.73, "cagr": 17.3, "roe": 8.5, "mcap": 23.3, "is_us": true}, {"rank": 37, "ticker": "TW.L", "name": "Taylor Wimpey plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.93, "yield": 7.94, "cagr": -8.1, "roe": 15.5, "mcap": 7.4, "is_us": false}, {"rank": 38, "ticker": "WMB", "name": "The Williams Companies", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.9, "yield": 5.96, "cagr": 6.8, "roe": 19.5, "mcap": 21.6, "is_us": true}, {"rank": 39, "ticker": "NEM", "name": "Newmont Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 0.9, "yield": 4.29, "cagr": 35.0, "roe": 8.0, "mcap": 21.5, "is_us": true}, {"rank": 40, "ticker": "ADEN.SW", "name": "Adecco Group AG", "country": "Switzerland", "flag": "\ud83c\udde8\ud83c\udded", "sector": "Industrials", "weight": 0.9, "yield": 7.89, "cagr": 10.8, "roe": 9.8, "mcap": 7.2, "is_us": false}, {"rank": 41, "ticker": "OMV.VI", "name": "OMV AG", "country": "Austria", "flag": "\ud83c\udde6\ud83c\uddf9", "sector": "Energy", "weight": 0.88, "yield": 5.73, "cagr": 13.9, "roe": 14.2, "mcap": 7.0, "is_us": false}, {"rank": 42, "ticker": "PSX", "name": "Phillips 66", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.78, "yield": 4.14, "cagr": 7.2, "roe": 18.5, "mcap": 18.6, "is_us": true}, {"rank": 43, "ticker": "ADM.L", "name": "Admiral Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.7, "yield": 11.51, "cagr": 15.7, "roe": 36.4, "mcap": 5.6, "is_us": false}, {"rank": 44, "ticker": "KESKOB.HE", "name": "Kesko Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Consumer Staples", "weight": 0.64, "yield": 5.47, "cagr": 16.2, "roe": 14.8, "mcap": 5.1, "is_us": false}, {"rank": 45, "ticker": "AGS.BR", "name": "Ageas SA/NV", "country": "Belgium", "flag": "\ud83c\udde7\ud83c\uddea", "sector": "Financials", "weight": 0.6, "yield": 10.91, "cagr": 15.1, "roe": 12.5, "mcap": 4.8, "is_us": false}, {"rank": 46, "ticker": "DRI", "name": "Darden Restaurants", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.56, "yield": 3.14, "cagr": 14.1, "roe": 42.0, "mcap": 13.3, "is_us": true}, {"rank": 47, "ticker": "ACS.MC", "name": "ACS Actividades de Construcci\u00f3n", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Industrials", "weight": 0.45, "yield": 7.13, "cagr": 10.9, "roe": 13.5, "mcap": 3.6, "is_us": false}, {"rank": 48, "ticker": "IGG.L", "name": "IG Group Holdings", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.38, "yield": 6.43, "cagr": 6.4, "roe": 22.0, "mcap": 3.1, "is_us": false}, {"rank": 49, "ticker": "BMED.MI", "name": "Banca Mediolanum S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 0.37, "yield": 7.23, "cagr": 6.0, "roe": 22.0, "mcap": 3.0, "is_us": false}, {"rank": 50, "ticker": "NVG.LS", "name": "The Navigator Company, S.A.", "country": "Portugal", "flag": "\ud83c\uddf5\ud83c\uddf9", "sector": "Materials", "weight": 0.35, "yield": 10.86, "cagr": -0.0, "roe": 18.5, "mcap": 2.8, "is_us": false}]}, "2024": {"year": "2024", "date": "2024-03-25", "count": 50, "yield": 6.38, "cagr": 10.09, "roe": 23.9, "turnover_count": 18, "turnover_pct": 36.0, "added": ["ACA.PA", "BMY", "CSCO", "CVX", "DANSKE.CO", "GILD", "HSBA.L", "ISP.MI", "JNJ", "MNDI.L", "NDA-SE.ST", "NN.AS", "PFE", "SEB-A.ST", "SHB-A.ST", "STJ.L", "TEL2-B.ST", "WHR"], "removed": ["ACS.MC", "ADEN.SW", "ADM.L", "BMED.MI", "ENI.MI", "IBM", "IGG.L", "KMI", "MMM", "OKE", "PRU", "PSX", "RAND.AS", "SAMPO.HE", "TFC", "TTE.PA", "TW.L", "VOLV-B.ST"], "holdings": [{"rank": 1, "ticker": "BMW.DE", "name": "Bayerische Motoren Werke (BMW)", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 8.0, "cagr": 16.3, "roe": 13.5, "mcap": 95.7, "is_us": false}, {"rank": 2, "ticker": "MBG.DE", "name": "Mercedes-Benz Group AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 7.05, "cagr": 7.3, "roe": 14.8, "mcap": 112.1, "is_us": false}, {"rank": 3, "ticker": "RIO.L", "name": "Rio Tinto plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Materials", "weight": 4.0, "yield": 6.81, "cagr": -3.9, "roe": 19.3, "mcap": 67.6, "is_us": false}, {"rank": 4, "ticker": "EQNR.OL", "name": "Equinor ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Energy", "weight": 4.0, "yield": 12.35, "cagr": 35.0, "roe": 22.5, "mcap": 47.9, "is_us": false}, {"rank": 5, "ticker": "ENEL.MI", "name": "Enel S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Utilities", "weight": 4.0, "yield": 6.84, "cagr": 8.8, "roe": 13.8, "mcap": 44.2, "is_us": false}, {"rank": 6, "ticker": "UPS", "name": "United Parcel Service", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 4.0, "yield": 4.15, "cagr": 12.0, "roe": 28.6, "mcap": 166.3, "is_us": true}, {"rank": 7, "ticker": "CVX", "name": "Chevron Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 4.0, "yield": 3.94, "cagr": 6.2, "roe": 12.2, "mcap": 172.1, "is_us": true}, {"rank": 8, "ticker": "ABBV", "name": "AbbVie Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.36, "cagr": 8.7, "roe": 45.0, "mcap": 194.2, "is_us": true}, {"rank": 9, "ticker": "JNJ", "name": "Johnson & Johnson", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.07, "cagr": 5.7, "roe": 26.5, "mcap": 201.4, "is_us": true}, {"rank": 10, "ticker": "HSBA.L", "name": "HSBC Holdings plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 3.79, "yield": 7.8, "cagr": 4.6, "roe": 13.8, "mcap": 82.4, "is_us": false}, {"rank": 11, "ticker": "PFE", "name": "Pfizer Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 3.77, "yield": 6.02, "cagr": 4.7, "roe": 12.0, "mcap": 131.1, "is_us": true}, {"rank": 12, "ticker": "BATS.L", "name": "British American Tobacco", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 3.64, "yield": 9.77, "cagr": 3.3, "roe": 12.0, "mcap": 38.2, "is_us": false}, {"rank": 13, "ticker": "ISP.MI", "name": "Intesa Sanpaolo S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 3.53, "yield": 7.05, "cagr": 2.9, "roe": 16.8, "mcap": 40.5, "is_us": false}, {"rank": 14, "ticker": "ACA.PA", "name": "Cr\u00e9dit Agricole S.A.", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Financials", "weight": 3.27, "yield": 7.84, "cagr": 10.8, "roe": 12.4, "mcap": 37.5, "is_us": false}, {"rank": 15, "ticker": "COP", "name": "ConocoPhillips", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 2.98, "yield": 3.31, "cagr": 28.8, "roe": 18.5, "mcap": 103.5, "is_us": true}, {"rank": 16, "ticker": "CSCO", "name": "Cisco Systems, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.95, "yield": 3.14, "cagr": 3.4, "roe": 27.3, "mcap": 102.6, "is_us": true}, {"rank": 17, "ticker": "AMGN", "name": "Amgen Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 2.75, "yield": 3.08, "cagr": 9.8, "roe": 85.0, "mcap": 95.6, "is_us": true}, {"rank": 18, "ticker": "BMY", "name": "Bristol-Myers Squibb Co.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 2.51, "yield": 4.42, "cagr": 7.5, "roe": 18.0, "mcap": 87.2, "is_us": true}, {"rank": 19, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 2.43, "yield": 5.67, "cagr": 2.5, "roe": 65.0, "mcap": 84.4, "is_us": true}, {"rank": 20, "ticker": "NDA-SE.ST", "name": "Nordea Bank Abp", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 2.24, "yield": 8.52, "cagr": 6.2, "roe": 16.8, "mcap": 25.7, "is_us": false}, {"rank": 21, "ticker": "MS", "name": "Morgan Stanley", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 2.14, "yield": 3.65, "cagr": 23.7, "roe": 13.8, "mcap": 81.5, "is_us": true}, {"rank": 22, "ticker": "PCAR", "name": "PACCAR Inc", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.81, "yield": 3.45, "cagr": 15.1, "roe": 26.5, "mcap": 62.8, "is_us": true}, {"rank": 23, "ticker": "SEB-A.ST", "name": "Skandinaviska Enskilda Banken", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.73, "yield": 12.36, "cagr": 8.3, "roe": 15.8, "mcap": 19.9, "is_us": false}, {"rank": 24, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.52, "yield": 3.8, "cagr": 3.4, "roe": 75.0, "mcap": 52.7, "is_us": true}, {"rank": 25, "ticker": "EOG", "name": "EOG Resources, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.51, "yield": 3.84, "cagr": 35.0, "roe": 24.0, "mcap": 52.5, "is_us": true}, {"rank": 26, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.35, "yield": 8.97, "cagr": 4.6, "roe": 80.0, "mcap": 47.1, "is_us": true}, {"rank": 27, "ticker": "IMB.L", "name": "Imperial Brands plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Staples", "weight": 1.31, "yield": 8.47, "cagr": -4.8, "roe": 29.0, "mcap": 13.8, "is_us": false}, {"rank": 28, "ticker": "USB", "name": "U.S. Bancorp", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.3, "yield": 4.43, "cagr": 7.6, "roe": 11.5, "mcap": 49.4, "is_us": true}, {"rank": 29, "ticker": "MNDI.L", "name": "Mondi plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Materials", "weight": 1.3, "yield": 14.99, "cagr": 5.2, "roe": 10.5, "mcap": 13.6, "is_us": false}, {"rank": 30, "ticker": "DANSKE.CO", "name": "Danske Bank A/S", "country": "Denmark", "flag": "\ud83c\udde9\ud83c\uddf0", "sector": "Financials", "weight": 1.29, "yield": 7.08, "cagr": 11.3, "roe": 13.8, "mcap": 14.8, "is_us": false}, {"rank": 31, "ticker": "SHB-A.ST", "name": "Svenska Handelsbanken AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.28, "yield": 11.92, "cagr": 11.6, "roe": 13.8, "mcap": 14.7, "is_us": false}, {"rank": 32, "ticker": "PNC", "name": "PNC Financial Services", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 1.28, "yield": 3.97, "cagr": 11.3, "roe": 12.2, "mcap": 48.7, "is_us": true}, {"rank": 33, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 1.24, "yield": 4.98, "cagr": 4.6, "roe": 18.5, "mcap": 43.0, "is_us": true}, {"rank": 34, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.2, "yield": 7.72, "cagr": 4.6, "roe": 18.2, "mcap": 13.8, "is_us": false}, {"rank": 35, "ticker": "GILD", "name": "Gilead Sciences, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 1.19, "yield": 4.16, "cagr": 5.2, "roe": 22.0, "mcap": 41.3, "is_us": true}, {"rank": 36, "ticker": "HPQ", "name": "HP Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 1.01, "yield": 3.61, "cagr": 12.5, "roe": 65.0, "mcap": 35.0, "is_us": true}, {"rank": 37, "ticker": "BME.L", "name": "B&M European Value Retail", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.91, "yield": 6.45, "cagr": 35.0, "roe": 28.5, "mcap": 9.6, "is_us": false}, {"rank": 38, "ticker": "WMB", "name": "The Williams Companies", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.82, "yield": 4.76, "cagr": 5.4, "roe": 19.5, "mcap": 28.5, "is_us": true}, {"rank": 39, "ticker": "TROW", "name": "T. Rowe Price Group", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 0.74, "yield": 4.14, "cagr": 11.4, "roe": 20.5, "mcap": 28.2, "is_us": true}, {"rank": 40, "ticker": "OMV.VI", "name": "OMV AG", "country": "Austria", "flag": "\ud83c\udde6\ud83c\uddf9", "sector": "Energy", "weight": 0.72, "yield": 11.69, "cagr": 27.5, "roe": 14.2, "mcap": 7.6, "is_us": false}, {"rank": 41, "ticker": "YAR.OL", "name": "Yara International ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Materials", "weight": 0.68, "yield": 16.29, "cagr": 35.0, "roe": 10.2, "mcap": 7.1, "is_us": false}, {"rank": 42, "ticker": "WHR", "name": "Whirlpool Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.59, "yield": 6.17, "cagr": 8.8, "roe": 11.0, "mcap": 20.7, "is_us": true}, {"rank": 43, "ticker": "NN.AS", "name": "NN Group N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Financials", "weight": 0.59, "yield": 6.94, "cagr": 11.3, "roe": 12.8, "mcap": 6.7, "is_us": false}, {"rank": 44, "ticker": "AGS.BR", "name": "Ageas SA/NV", "country": "Belgium", "flag": "\ud83c\udde7\ud83c\uddea", "sector": "Financials", "weight": 0.44, "yield": 7.24, "cagr": 7.4, "roe": 12.5, "mcap": 5.1, "is_us": false}, {"rank": 45, "ticker": "NEM", "name": "Newmont Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 0.44, "yield": 4.27, "cagr": 21.0, "roe": 8.0, "mcap": 15.3, "is_us": true}, {"rank": 46, "ticker": "KESKOB.HE", "name": "Kesko Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Consumer Staples", "weight": 0.43, "yield": 6.25, "cagr": 14.4, "roe": 14.8, "mcap": 4.5, "is_us": false}, {"rank": 47, "ticker": "DRI", "name": "Darden Restaurants", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.41, "yield": 3.16, "cagr": 12.3, "roe": 42.0, "mcap": 14.4, "is_us": true}, {"rank": 48, "ticker": "TEL2-B.ST", "name": "Tele2 AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Communication Services", "weight": 0.41, "yield": 7.77, "cagr": 11.2, "roe": 18.5, "mcap": 4.3, "is_us": false}, {"rank": 49, "ticker": "NVG.LS", "name": "The Navigator Company, S.A.", "country": "Portugal", "flag": "\ud83c\uddf5\ud83c\uddf9", "sector": "Materials", "weight": 0.33, "yield": 7.01, "cagr": 0.2, "roe": 18.5, "mcap": 3.4, "is_us": false}, {"rank": 50, "ticker": "STJ.L", "name": "St. James's Place plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.17, "yield": 11.28, "cagr": 2.9, "roe": 14.0, "mcap": 2.0, "is_us": false}]}, "2025": {"year": "2025", "date": "2025-03-24", "count": 50, "yield": 5.96, "cagr": 10.27, "roe": 26.96, "turnover_count": 21, "turnover_pct": 42.0, "added": ["ADM", "BKG.L", "BMED.MI", "CABK.MC", "DNB.OL", "GIS", "GPC", "HSY", "INGA.AS", "LMT", "MB.MI", "MONY.L", "MRK", "NESTE.HE", "PEP", "PSX", "RAND.AS", "REP.MC", "TGT", "VLO", "VOLV-B.ST"], "removed": ["ACA.PA", "AGS.BR", "AMGN", "BATS.L", "CSCO", "DRI", "ENEL.MI", "EOG", "GILD", "IMB.L", "KESKOB.HE", "MNDI.L", "MS", "NEM", "NN.AS", "PNC", "STJ.L", "TEL2-B.ST", "USB", "WMB", "YAR.OL"], "holdings": [{"rank": 1, "ticker": "MBG.DE", "name": "Mercedes-Benz Group AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 9.04, "cagr": 10.3, "roe": 14.8, "mcap": 89.2, "is_us": false}, {"rank": 2, "ticker": "BMW.DE", "name": "Bayerische Motoren Werke (BMW)", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 7.55, "cagr": 11.4, "roe": 13.5, "mcap": 71.5, "is_us": false}, {"rank": 3, "ticker": "RIO.L", "name": "Rio Tinto plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Materials", "weight": 4.0, "yield": 6.43, "cagr": -2.4, "roe": 19.3, "mcap": 65.1, "is_us": false}, {"rank": 4, "ticker": "CVX", "name": "Chevron Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 4.0, "yield": 4.0, "cagr": 6.3, "roe": 12.2, "mcap": 181.5, "is_us": true}, {"rank": 5, "ticker": "PEP", "name": "PepsiCo, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 3.7, "cagr": 7.2, "roe": 52.0, "mcap": 236.4, "is_us": true}, {"rank": 6, "ticker": "JNJ", "name": "Johnson & Johnson", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.04, "cagr": 5.5, "roe": 26.5, "mcap": 211.8, "is_us": true}, {"rank": 7, "ticker": "ABBV", "name": "AbbVie Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.01, "cagr": 7.5, "roe": 45.0, "mcap": 227.5, "is_us": true}, {"rank": 8, "ticker": "EQNR.OL", "name": "Equinor ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Energy", "weight": 4.0, "yield": 11.36, "cagr": 26.6, "roe": 22.5, "mcap": 44.2, "is_us": false}, {"rank": 9, "ticker": "VOLV-B.ST", "name": "Volvo AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Industrials", "weight": 4.0, "yield": 5.81, "cagr": 12.5, "roe": 24.5, "mcap": 53.9, "is_us": false}, {"rank": 10, "ticker": "MRK", "name": "Merck & Co., Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.42, "cagr": 7.4, "roe": 34.0, "mcap": 161.1, "is_us": true}, {"rank": 11, "ticker": "HSBA.L", "name": "HSBC Holdings plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 3.9, "yield": 7.57, "cagr": 23.2, "roe": 13.8, "mcap": 117.0, "is_us": false}, {"rank": 12, "ticker": "ISP.MI", "name": "Intesa Sanpaolo S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 3.88, "yield": 6.66, "cagr": 10.3, "roe": 16.8, "mcap": 59.0, "is_us": false}, {"rank": 13, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 3.7, "yield": 3.53, "cagr": 2.8, "roe": 65.0, "mcap": 140.4, "is_us": true}, {"rank": 14, "ticker": "PFE", "name": "Pfizer Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 3.29, "yield": 6.47, "cagr": 4.1, "roe": 12.0, "mcap": 124.9, "is_us": true}, {"rank": 15, "ticker": "UPS", "name": "United Parcel Service", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 3.24, "yield": 5.64, "cagr": 10.9, "roe": 28.6, "mcap": 123.0, "is_us": true}, {"rank": 16, "ticker": "INGA.AS", "name": "ING Groep N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Financials", "weight": 2.91, "yield": 6.92, "cagr": 13.3, "roe": 14.5, "mcap": 35.0, "is_us": false}, {"rank": 17, "ticker": "BMY", "name": "Bristol-Myers Squibb Co.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 2.69, "yield": 3.96, "cagr": 7.6, "roe": 18.0, "mcap": 101.9, "is_us": true}, {"rank": 18, "ticker": "NDA-SE.ST", "name": "Nordea Bank Abp", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 2.35, "yield": 7.92, "cagr": 6.4, "roe": 16.8, "mcap": 28.3, "is_us": false}, {"rank": 19, "ticker": "DNB.OL", "name": "DNB Bank ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Financials", "weight": 2.27, "yield": 5.87, "cagr": 14.2, "roe": 15.8, "mcap": 27.3, "is_us": false}, {"rank": 20, "ticker": "LMT", "name": "Lockheed Martin Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 2.23, "yield": 2.97, "cagr": 7.0, "roe": 80.2, "mcap": 84.6, "is_us": true}, {"rank": 21, "ticker": "COP", "name": "ConocoPhillips", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 2.21, "yield": 3.05, "cagr": 16.6, "roe": 18.5, "mcap": 83.8, "is_us": true}, {"rank": 22, "ticker": "CABK.MC", "name": "CaixaBank, S.A.", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Financials", "weight": 2.04, "yield": 7.4, "cagr": 35.0, "roe": 15.5, "mcap": 24.5, "is_us": false}, {"rank": 23, "ticker": "SEB-A.ST", "name": "Skandinaviska Enskilda Banken", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.92, "yield": 6.71, "cagr": 12.1, "roe": 15.8, "mcap": 23.1, "is_us": false}, {"rank": 24, "ticker": "GIS", "name": "General Mills, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.69, "yield": 4.11, "cagr": 4.0, "roe": 26.0, "mcap": 64.1, "is_us": true}, {"rank": 25, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.65, "yield": 5.24, "cagr": -1.9, "roe": 80.0, "mcap": 62.8, "is_us": true}, {"rank": 26, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.53, "yield": 3.57, "cagr": 3.4, "roe": 75.0, "mcap": 58.1, "is_us": true}, {"rank": 27, "ticker": "SHB-A.ST", "name": "Svenska Handelsbanken AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.48, "yield": 9.85, "cagr": 18.8, "roe": 13.8, "mcap": 17.8, "is_us": false}, {"rank": 28, "ticker": "DANSKE.CO", "name": "Danske Bank A/S", "country": "Denmark", "flag": "\ud83c\udde9\ud83c\uddf0", "sector": "Financials", "weight": 1.39, "yield": 12.39, "cagr": 27.6, "roe": 13.8, "mcap": 16.8, "is_us": false}, {"rank": 29, "ticker": "PCAR", "name": "PACCAR Inc", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.32, "yield": 4.29, "cagr": 12.1, "roe": 26.5, "mcap": 50.2, "is_us": true}, {"rank": 30, "ticker": "TGT", "name": "Target Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.27, "yield": 4.12, "cagr": 11.2, "roe": 28.5, "mcap": 48.1, "is_us": true}, {"rank": 31, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.1, "yield": 8.48, "cagr": 4.3, "roe": 18.2, "mcap": 13.2, "is_us": false}, {"rank": 32, "ticker": "RAND.AS", "name": "Randstad N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Industrials", "weight": 1.02, "yield": 8.84, "cagr": 1.0, "roe": 15.2, "mcap": 8.3, "is_us": false}, {"rank": 33, "ticker": "OMV.VI", "name": "OMV AG", "country": "Austria", "flag": "\ud83c\udde6\ud83c\uddf9", "sector": "Energy", "weight": 0.98, "yield": 11.03, "cagr": 23.6, "roe": 14.2, "mcap": 8.0, "is_us": false}, {"rank": 34, "ticker": "HSY", "name": "The Hershey Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.97, "yield": 3.26, "cagr": 12.5, "roe": 45.0, "mcap": 36.8, "is_us": true}, {"rank": 35, "ticker": "HPQ", "name": "HP Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 0.9, "yield": 3.9, "cagr": 11.0, "roe": 65.0, "mcap": 34.0, "is_us": true}, {"rank": 36, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 0.81, "yield": 7.45, "cagr": 5.0, "roe": 18.5, "mcap": 30.8, "is_us": true}, {"rank": 37, "ticker": "REP.MC", "name": "Repsol, S.A.", "country": "Spain", "flag": "\ud83c\uddea\ud83c\uddf8", "sector": "Energy", "weight": 0.79, "yield": 8.15, "cagr": 1.0, "roe": 12.8, "mcap": 6.5, "is_us": false}, {"rank": 38, "ticker": "BKG.L", "name": "Berkeley Group Holdings", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.72, "yield": 6.82, "cagr": 14.9, "roe": 12.8, "mcap": 5.8, "is_us": false}, {"rank": 39, "ticker": "MB.MI", "name": "Mediobanca S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 0.71, "yield": 5.98, "cagr": 17.9, "roe": 13.5, "mcap": 8.6, "is_us": false}, {"rank": 40, "ticker": "PSX", "name": "Phillips 66", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.65, "yield": 3.64, "cagr": 5.0, "roe": 18.5, "mcap": 24.6, "is_us": true}, {"rank": 41, "ticker": "TROW", "name": "T. Rowe Price Group", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 0.58, "yield": 5.2, "cagr": 9.4, "roe": 20.5, "mcap": 22.9, "is_us": true}, {"rank": 42, "ticker": "BME.L", "name": "B&M European Value Retail", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.57, "yield": 11.39, "cagr": 5.8, "roe": 28.5, "mcap": 4.7, "is_us": false}, {"rank": 43, "ticker": "GPC", "name": "Genuine Parts Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.5, "yield": 3.34, "cagr": 5.5, "roe": 28.5, "mcap": 18.8, "is_us": true}, {"rank": 44, "ticker": "NESTE.HE", "name": "Neste Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Energy", "weight": 0.48, "yield": 13.13, "cagr": 9.6, "roe": 11.0, "mcap": 3.9, "is_us": false}, {"rank": 45, "ticker": "WHR", "name": "Whirlpool Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.46, "yield": 7.32, "cagr": 7.8, "roe": 11.0, "mcap": 17.4, "is_us": true}, {"rank": 46, "ticker": "BMED.MI", "name": "Banca Mediolanum S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 0.45, "yield": 5.29, "cagr": 14.0, "roe": 22.0, "mcap": 5.5, "is_us": false}, {"rank": 47, "ticker": "ADM", "name": "Archer-Daniels-Midland", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.41, "yield": 4.38, "cagr": 7.3, "roe": 11.5, "mcap": 15.5, "is_us": true}, {"rank": 48, "ticker": "VLO", "name": "Valero Energy Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 0.41, "yield": 3.29, "cagr": 3.4, "roe": 22.0, "mcap": 15.5, "is_us": true}, {"rank": 49, "ticker": "NVG.LS", "name": "The Navigator Company, S.A.", "country": "Portugal", "flag": "\ud83c\uddf5\ud83c\uddf9", "sector": "Materials", "weight": 0.34, "yield": 10.84, "cagr": -3.4, "roe": 18.5, "mcap": 2.8, "is_us": false}, {"rank": 50, "ticker": "MONY.L", "name": "MONY Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Communication Services", "weight": 0.18, "yield": 6.05, "cagr": -8.1, "roe": 42.0, "mcap": 1.5, "is_us": false}]}, "2026": {"year": "2026", "date": "2026-03-23", "count": 50, "yield": 5.23, "cagr": 12.73, "roe": 31.41, "turnover_count": 22, "turnover_pct": 44.0, "added": ["ADM.L", "ADP", "AMGN", "AV.L", "CA.PA", "CMCSA", "COLO-B.CO", "CS.PA", "DRI", "ELISA.HE", "ENI.MI", "EOG", "FNTN.DE", "HD", "NKE", "ORK.OL", "PAYX", "PG", "PST.MI", "SWED-A.ST", "TW.L", "TXN"], "removed": ["ADM", "BKG.L", "BMW.DE", "CABK.MC", "COP", "DANSKE.CO", "EQNR.OL", "HSBA.L", "HSY", "JNJ", "LMT", "MB.MI", "NESTE.HE", "NVG.LS", "PCAR", "PFE", "PSX", "REP.MC", "RIO.L", "SEB-A.ST", "VLO", "WHR"], "holdings": [{"rank": 1, "ticker": "MBG.DE", "name": "Mercedes-Benz Group AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 8.28, "cagr": 35.0, "roe": 14.8, "mcap": 79.0, "is_us": false}, {"rank": 2, "ticker": "VOLV-B.ST", "name": "Volvo AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Industrials", "weight": 4.0, "yield": 6.22, "cagr": 0.0, "roe": 24.5, "mcap": 51.8, "is_us": false}, {"rank": 3, "ticker": "CVX", "name": "Chevron Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 4.0, "yield": 3.37, "cagr": 6.0, "roe": 12.2, "mcap": 225.7, "is_us": true}, {"rank": 4, "ticker": "ABBV", "name": "AbbVie Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 4.0, "yield": 3.25, "cagr": 6.6, "roe": 45.0, "mcap": 222.9, "is_us": true}, {"rank": 5, "ticker": "ENI.MI", "name": "Eni S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Energy", "weight": 4.0, "yield": 5.68, "cagr": 18.4, "roe": 12.4, "mcap": 36.3, "is_us": false}, {"rank": 6, "ticker": "PEP", "name": "PepsiCo, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 3.77, "cagr": 6.8, "roe": 52.0, "mcap": 243.6, "is_us": true}, {"rank": 7, "ticker": "PG", "name": "Procter & Gamble Co.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 4.0, "yield": 2.94, "cagr": 6.0, "roe": 32.5, "mcap": 325.9, "is_us": true}, {"rank": 8, "ticker": "HD", "name": "The Home Depot, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 4.0, "yield": 2.79, "cagr": 8.5, "roe": 95.0, "mcap": 381.6, "is_us": true}, {"rank": 9, "ticker": "MRK", "name": "Merck & Co., Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 3.77, "yield": 2.87, "cagr": 6.7, "roe": 34.0, "mcap": 201.8, "is_us": true}, {"rank": 10, "ticker": "INGA.AS", "name": "ING Groep N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Financials", "weight": 3.77, "yield": 5.58, "cagr": 35.0, "roe": 14.5, "mcap": 42.2, "is_us": false}, {"rank": 11, "ticker": "CMCSA", "name": "Comcast Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Communication Services", "weight": 3.65, "yield": 4.34, "cagr": 7.8, "roe": 17.5, "mcap": 195.5, "is_us": true}, {"rank": 12, "ticker": "COLO-B.CO", "name": "Coloplast A/S", "country": "Denmark", "flag": "\ud83c\udde9\ud83c\uddf0", "sector": "Health Care", "weight": 3.36, "yield": 5.39, "cagr": 5.0, "roe": 45.0, "mcap": 21.1, "is_us": false}, {"rank": 13, "ticker": "ISP.MI", "name": "Intesa Sanpaolo S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 3.35, "yield": 6.97, "cagr": 0.0, "roe": 16.8, "mcap": 62.5, "is_us": false}, {"rank": 14, "ticker": "CS.PA", "name": "AXA S.A.", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Financials", "weight": 3.35, "yield": 5.68, "cagr": 24.1, "roe": 14.2, "mcap": 69.1, "is_us": false}, {"rank": 15, "ticker": "NDA-SE.ST", "name": "Nordea Bank Abp", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 3.24, "yield": 6.17, "cagr": 35.0, "roe": 16.8, "mcap": 36.3, "is_us": false}, {"rank": 16, "ticker": "NKE", "name": "NIKE, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 2.91, "yield": 3.07, "cagr": 9.3, "roe": 32.0, "mcap": 155.7, "is_us": true}, {"rank": 17, "ticker": "PM", "name": "Philip Morris International", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 2.82, "yield": 3.53, "cagr": 3.8, "roe": 65.0, "mcap": 151.2, "is_us": true}, {"rank": 18, "ticker": "DNB.OL", "name": "DNB Bank ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Financials", "weight": 2.63, "yield": 5.7, "cagr": 14.8, "roe": 15.8, "mcap": 29.4, "is_us": false}, {"rank": 19, "ticker": "AMGN", "name": "Amgen Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 2.22, "yield": 2.76, "cagr": 8.0, "roe": 85.0, "mcap": 119.1, "is_us": true}, {"rank": 20, "ticker": "CA.PA", "name": "Carrefour S.A.", "country": "France", "flag": "\ud83c\uddeb\ud83c\uddf7", "sector": "Consumer Staples", "weight": 2.09, "yield": 7.66, "cagr": 35.0, "roe": 10.2, "mcap": 13.2, "is_us": false}, {"rank": 21, "ticker": "TXN", "name": "Texas Instruments Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 2.03, "yield": 2.95, "cagr": 7.7, "roe": 39.7, "mcap": 108.8, "is_us": true}, {"rank": 22, "ticker": "UPS", "name": "United Parcel Service", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.94, "yield": 6.72, "cagr": 10.1, "roe": 28.6, "mcap": 103.7, "is_us": true}, {"rank": 23, "ticker": "SWED-A.ST", "name": "Swedbank AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.81, "yield": 6.59, "cagr": 35.0, "roe": 17.2, "mcap": 20.3, "is_us": false}, {"rank": 24, "ticker": "BMY", "name": "Bristol-Myers Squibb Co.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Health Care", "weight": 1.78, "yield": 4.37, "cagr": 6.2, "roe": 18.0, "mcap": 95.2, "is_us": true}, {"rank": 25, "ticker": "SHB-A.ST", "name": "Svenska Handelsbanken AB", "country": "Sweden", "flag": "\ud83c\uddf8\ud83c\uddea", "sector": "Financials", "weight": 1.63, "yield": 11.05, "cagr": 0.0, "roe": 13.8, "mcap": 18.3, "is_us": false}, {"rank": 26, "ticker": "OMV.VI", "name": "OMV AG", "country": "Austria", "flag": "\ud83c\udde6\ud83c\uddf9", "sector": "Energy", "weight": 1.63, "yield": 8.1, "cagr": 22.1, "roe": 14.2, "mcap": 10.3, "is_us": false}, {"rank": 27, "ticker": "ELISA.HE", "name": "Elisa Oyj", "country": "Finland", "flag": "\ud83c\uddeb\ud83c\uddee", "sector": "Communication Services", "weight": 1.58, "yield": 5.52, "cagr": 4.9, "roe": 25.5, "mcap": 10.0, "is_us": false}, {"rank": 28, "ticker": "ORK.OL", "name": "Orkla ASA", "country": "Norway", "flag": "\ud83c\uddf3\ud83c\uddf4", "sector": "Consumer Staples", "weight": 1.54, "yield": 8.65, "cagr": 30.9, "roe": 12.5, "mcap": 9.7, "is_us": false}, {"rank": 29, "ticker": "ADP", "name": "Automatic Data Processing", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 1.52, "yield": 3.09, "cagr": 12.0, "roe": 78.0, "mcap": 81.6, "is_us": true}, {"rank": 30, "ticker": "MO", "name": "Altria Group, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 1.31, "yield": 6.46, "cagr": -0.5, "roe": 80.0, "mcap": 70.1, "is_us": true}, {"rank": 31, "ticker": "PST.MI", "name": "Poste Italiane S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 1.19, "yield": 5.76, "cagr": 19.5, "roe": 13.8, "mcap": 13.3, "is_us": false}, {"rank": 32, "ticker": "AV.L", "name": "Aviva plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.15, "yield": 6.03, "cagr": 23.5, "roe": 12.5, "mcap": 12.9, "is_us": false}, {"rank": 33, "ticker": "LGEN.L", "name": "Legal & General Group", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 1.15, "yield": 9.07, "cagr": 4.1, "roe": 18.2, "mcap": 12.8, "is_us": false}, {"rank": 34, "ticker": "EOG", "name": "EOG Resources, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Energy", "weight": 1.08, "yield": 2.86, "cagr": 21.6, "roe": 24.0, "mcap": 57.6, "is_us": true}, {"rank": 35, "ticker": "TGT", "name": "Target Corporation", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.95, "yield": 3.95, "cagr": 11.0, "roe": 28.5, "mcap": 51.1, "is_us": true}, {"rank": 36, "ticker": "TW.L", "name": "Taylor Wimpey plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.91, "yield": 10.53, "cagr": 0.0, "roe": 9.2, "mcap": 5.7, "is_us": false}, {"rank": 37, "ticker": "ADM.L", "name": "Admiral Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Financials", "weight": 0.8, "yield": 7.61, "cagr": 9.9, "roe": 36.4, "mcap": 8.9, "is_us": false}, {"rank": 38, "ticker": "RAND.AS", "name": "Randstad N.V.", "country": "Netherlands", "flag": "\ud83c\uddf3\ud83c\uddf1", "sector": "Industrials", "weight": 0.79, "yield": 6.79, "cagr": 0.0, "roe": 15.2, "mcap": 5.0, "is_us": false}, {"rank": 39, "ticker": "KMB", "name": "Kimberly-Clark Corp.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.78, "yield": 5.09, "cagr": 3.1, "roe": 75.0, "mcap": 41.9, "is_us": true}, {"rank": 40, "ticker": "GIS", "name": "General Mills, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Staples", "weight": 0.77, "yield": 6.5, "cagr": 4.0, "roe": 26.0, "mcap": 41.2, "is_us": true}, {"rank": 41, "ticker": "PAYX", "name": "Paychex, Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Industrials", "weight": 0.75, "yield": 4.62, "cagr": 11.7, "roe": 44.0, "mcap": 39.9, "is_us": true}, {"rank": 42, "ticker": "FNTN.DE", "name": "Freenet AG", "country": "Germany", "flag": "\ud83c\udde9\ud83c\uddea", "sector": "Communication Services", "weight": 0.58, "yield": 7.61, "cagr": 35.0, "roe": 16.5, "mcap": 3.6, "is_us": false}, {"rank": 43, "ticker": "LYB", "name": "LyondellBasell Industries", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Materials", "weight": 0.57, "yield": 6.72, "cagr": 2.7, "roe": 18.5, "mcap": 30.5, "is_us": true}, {"rank": 44, "ticker": "BMED.MI", "name": "Banca Mediolanum S.p.A.", "country": "Italy", "flag": "\ud83c\uddee\ud83c\uddf9", "sector": "Financials", "weight": 0.55, "yield": 7.34, "cagr": 0.0, "roe": 22.0, "mcap": 6.1, "is_us": false}, {"rank": 45, "ticker": "BME.L", "name": "B&M European Value Retail", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Consumer Discretionary", "weight": 0.46, "yield": 8.07, "cagr": -24.7, "roe": 28.5, "mcap": 2.9, "is_us": false}, {"rank": 46, "ticker": "HPQ", "name": "HP Inc.", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Information Technology", "weight": 0.41, "yield": 6.36, "cagr": 9.7, "roe": 65.0, "mcap": 21.7, "is_us": true}, {"rank": 47, "ticker": "TROW", "name": "T. Rowe Price Group", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Financials", "weight": 0.38, "yield": 5.81, "cagr": 6.2, "roe": 20.5, "mcap": 21.0, "is_us": true}, {"rank": 48, "ticker": "DRI", "name": "Darden Restaurants", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.32, "yield": 3.01, "cagr": 35.0, "roe": 42.0, "mcap": 17.3, "is_us": true}, {"rank": 49, "ticker": "GPC", "name": "Genuine Parts Company", "country": "United States", "flag": "\ud83c\uddfa\ud83c\uddf8", "sector": "Consumer Discretionary", "weight": 0.29, "yield": 4.11, "cagr": 5.5, "roe": 28.5, "mcap": 15.7, "is_us": true}, {"rank": 50, "ticker": "MONY.L", "name": "MONY Group plc", "country": "United Kingdom", "flag": "\ud83c\uddec\ud83c\udde7", "sector": "Communication Services", "weight": 0.18, "yield": 8.07, "cagr": 1.4, "roe": 42.0, "mcap": 1.2, "is_us": false}]}};
     const CHART_DATA = {"dates": ["2021-01-08", "2021-01-15", "2021-01-22", "2021-01-29", "2021-02-05", "2021-02-12", "2021-02-19", "2021-02-26", "2021-03-05", "2021-03-12", "2021-03-19", "2021-03-26", "2021-04-02", "2021-04-09", "2021-04-16", "2021-04-23", "2021-04-30", "2021-05-07", "2021-05-14", "2021-05-21", "2021-05-28", "2021-06-04", "2021-06-11", "2021-06-18", "2021-06-25", "2021-07-02", "2021-07-09", "2021-07-16", "2021-07-23", "2021-07-30", "2021-08-06", "2021-08-13", "2021-08-20", "2021-08-27", "2021-09-03", "2021-09-10", "2021-09-17", "2021-09-24", "2021-10-01", "2021-10-08", "2021-10-15", "2021-10-22", "2021-10-29", "2021-11-05", "2021-11-12", "2021-11-19", "2021-11-26", "2021-12-03", "2021-12-10", "2021-12-17", "2021-12-24", "2021-12-31", "2022-01-07", "2022-01-14", "2022-01-21", "2022-01-28", "2022-02-04", "2022-02-11", "2022-02-18", "2022-02-25", "2022-03-04", "2022-03-11", "2022-03-18", "2022-03-25", "2022-04-01", "2022-04-08", "2022-04-15", "2022-04-22", "2022-04-29", "2022-05-06", "2022-05-13", "2022-05-20", "2022-05-27", "2022-06-03", "2022-06-10", "2022-06-17", "2022-06-24", "2022-07-01", "2022-07-08", "2022-07-15", "2022-07-22", "2022-07-29", "2022-08-05", "2022-08-12", "2022-08-19", "2022-08-26", "2022-09-02", "2022-09-09", "2022-09-16", "2022-09-23", "2022-09-30", "2022-10-07", "2022-10-14", "2022-10-21", "2022-10-28", "2022-11-04", "2022-11-11", "2022-11-18", "2022-11-25", "2022-12-02", "2022-12-09", "2022-12-16", "2022-12-23", "2022-12-30", "2023-01-06", "2023-01-13", "2023-01-20", "2023-01-27", "2023-02-03", "2023-02-10", "2023-02-17", "2023-02-24", "2023-03-03", "2023-03-10", "2023-03-17", "2023-03-24", "2023-03-31", "2023-04-07", "2023-04-14", "2023-04-21", "2023-04-28", "2023-05-05", "2023-05-12", "2023-05-19", "2023-05-26", "2023-06-02", "2023-06-09", "2023-06-16", "2023-06-23", "2023-06-30", "2023-07-07", "2023-07-14", "2023-07-21", "2023-07-28", "2023-08-04", "2023-08-11", "2023-08-18", "2023-08-25", "2023-09-01", "2023-09-08", "2023-09-15", "2023-09-22", "2023-09-29", "2023-10-06", "2023-10-13", "2023-10-20", "2023-10-27", "2023-11-03", "2023-11-10", "2023-11-17", "2023-11-24", "2023-12-01", "2023-12-08", "2023-12-15", "2023-12-22", "2023-12-29", "2024-01-05", "2024-01-12", "2024-01-19", "2024-01-26", "2024-02-02", "2024-02-09", "2024-02-16", "2024-02-23", "2024-03-01", "2024-03-08", "2024-03-15", "2024-03-22", "2024-03-29", "2024-04-05", "2024-04-12", "2024-04-19", "2024-04-26", "2024-05-03", "2024-05-10", "2024-05-17", "2024-05-24", "2024-05-31", "2024-06-07", "2024-06-14", "2024-06-21", "2024-06-28", "2024-07-05", "2024-07-12", "2024-07-19", "2024-07-26", "2024-08-02", "2024-08-09", "2024-08-16", "2024-08-23", "2024-08-30", "2024-09-06", "2024-09-13", "2024-09-20", "2024-09-27", "2024-10-04", "2024-10-11", "2024-10-18", "2024-10-25", "2024-11-01", "2024-11-08", "2024-11-15", "2024-11-22", "2024-11-29", "2024-12-06", "2024-12-13", "2024-12-20", "2024-12-27", "2025-01-03", "2025-01-10", "2025-01-17", "2025-01-24", "2025-01-31", "2025-02-07", "2025-02-14", "2025-02-21", "2025-02-28", "2025-03-07", "2025-03-14", "2025-03-21", "2025-03-28", "2025-04-04", "2025-04-11", "2025-04-18", "2025-04-25", "2025-05-02", "2025-05-09", "2025-05-16", "2025-05-23", "2025-05-30", "2025-06-06", "2025-06-13", "2025-06-20", "2025-06-27", "2025-07-04", "2025-07-11", "2025-07-18", "2025-07-25", "2025-08-01", "2025-08-08", "2025-08-15", "2025-08-22", "2025-08-29", "2025-09-05", "2025-09-12", "2025-09-19", "2025-09-26", "2025-10-03", "2025-10-10", "2025-10-17", "2025-10-24", "2025-10-31", "2025-11-07", "2025-11-14", "2025-11-21", "2025-11-28", "2025-12-05", "2025-12-12", "2025-12-19", "2025-12-26", "2026-01-02", "2026-01-09", "2026-01-16", "2026-01-23", "2026-01-30", "2026-02-06", "2026-02-13", "2026-02-20", "2026-02-27", "2026-03-06", "2026-03-13", "2026-03-20", "2026-03-27", "2026-04-03", "2026-04-10", "2026-04-17", "2026-04-24", "2026-05-01", "2026-05-08", "2026-05-15", "2026-05-22", "2026-05-29", "2026-06-05", "2026-06-12", "2026-06-19", "2026-06-26", "2026-07-03", "2026-07-10", "2026-07-17", "2026-07-24", "2026-07-31", "2026-08-07", "2026-08-14", "2026-08-21", "2026-08-28", "2026-09-04", "2026-09-11", "2026-09-18", "2026-09-25", "2026-10-02", "2026-10-09", "2026-10-16", "2026-10-23", "2026-10-30"], "series": {"TXD50 (Transatlantic 50)": [105.84, 105.3, 103.86, 99.62, 102.97, 104.09, 103.95, 103.96, 108.52, 110.53, 109.57, 112.26, 111.47, 112.98, 114.03, 112.81, 111.93, 116.16, 115.15, 114.12, 113.22, 115.36, 115.47, 113.71, 115.81, 116.17, 115.55, 114.13, 114.77, 114.27, 114.33, 116.1, 115.31, 116.01, 115.53, 113.01, 112.66, 114.66, 116.27, 116.9, 118.13, 117.64, 117.24, 120.36, 121.07, 117.19, 116.29, 116.95, 121.38, 120.79, 122.02, 122.67, 125.7, 127.63, 125.67, 128.47, 128.38, 129.83, 126.98, 127.3, 125.96, 127.86, 130.44, 132.59, 134.06, 134.93, 134.11, 133.75, 135.62, 137.11, 138.41, 135.51, 140.66, 139.85, 135.22, 129.0, 132.92, 132.58, 132.58, 131.36, 132.07, 133.08, 132.97, 137.23, 138.37, 135.34, 135.37, 138.03, 135.87, 131.35, 129.19, 132.38, 132.38, 137.78, 140.47, 145.48, 147.17, 147.46, 147.3, 147.05, 144.57, 142.71, 146.87, 146.32, 152.63, 151.87, 147.92, 148.62, 150.35, 151.78, 153.94, 150.98, 154.04, 149.39, 141.24, 142.07, 146.89, 146.6, 149.19, 148.44, 148.05, 144.37, 142.72, 143.96, 142.9, 142.88, 144.25, 145.25, 141.16, 145.17, 142.51, 143.56, 149.58, 151.86, 149.86, 151.23, 146.91, 147.95, 149.95, 150.87, 154.09, 153.08, 152.25, 149.13, 152.2, 149.91, 146.47, 151.97, 149.95, 153.22, 153.68, 155.25, 155.59, 157.81, 159.69, 159.73, 160.18, 157.35, 154.36, 157.44, 156.62, 155.94, 158.08, 158.7, 159.35, 159.57, 161.35, 164.51, 166.43, 166.3, 165.21, 165.72, 167.57, 167.49, 172.24, 172.87, 168.89, 169.55, 167.83, 162.75, 166.17, 166.76, 166.97, 168.04, 168.43, 170.25, 166.58, 165.91, 168.56, 168.92, 170.06, 165.09, 166.51, 166.74, 167.54, 170.38, 171.14, 171.95, 171.25, 172.43, 170.34, 171.06, 173.97, 173.38, 171.88, 171.29, 168.45, 170.05, 172.62, 174.05, 179.9, 179.32, 179.01, 180.18, 182.07, 183.04, 185.63, 184.3, 181.64, 182.49, 181.54, 163.81, 163.12, 165.56, 169.36, 172.19, 171.98, 175.73, 172.4, 173.73, 173.88, 175.58, 174.46, 173.88, 177.61, 181.01, 179.89, 184.58, 179.87, 184.27, 186.79, 191.53, 187.43, 186.55, 185.99, 185.57, 189.66, 190.64, 186.84, 185.35, 188.93, 190.79, 190.53, 195.94, 193.84, 196.42, 197.21, 199.14, 200.53, 200.33, 203.27, 204.63, 208.46, 207.99, 209.77, 220.46, 219.41, 223.15, 225.15, 217.79, 216.59, 211.94, 214.77, 219.68, 221.33, 225.12, 220.94, 220.92, 220.17, 221.76, 226.88, 225.79, 223.24, 225.96, 225.58, 227.52, 230.65, 228.69, 231.64, 234.02, 235.94, 238.48, 238.85, 239.39, 240.88, 241.92, 238.67, 237.67, 236.65, 230.8, 231.94, 238.97, 237.24, 240.88], "SCHD (US Div 100)": [104.85, 104.18, 103.6, 100.22, 104.49, 105.03, 105.04, 104.15, 109.3, 112.23, 111.87, 116.78, 115.51, 117.84, 118.88, 118.05, 116.42, 121.39, 120.0, 118.01, 118.05, 119.94, 118.94, 115.66, 119.13, 121.37, 121.03, 119.77, 120.82, 119.65, 120.67, 123.71, 123.88, 124.55, 123.42, 120.6, 120.21, 121.65, 123.58, 123.55, 124.65, 125.15, 124.28, 129.22, 131.01, 128.11, 128.45, 127.84, 132.03, 131.59, 132.43, 133.56, 134.56, 132.89, 127.38, 130.06, 128.82, 128.16, 126.66, 129.12, 129.7, 128.85, 133.48, 135.19, 135.3, 136.5, 135.18, 134.02, 136.25, 139.87, 140.34, 134.62, 140.78, 139.3, 134.24, 127.76, 135.01, 134.55, 136.66, 137.51, 136.42, 138.62, 139.13, 143.59, 146.74, 142.41, 141.4, 146.15, 140.93, 138.25, 136.06, 138.53, 137.5, 142.91, 146.77, 150.46, 150.46, 148.41, 148.14, 147.44, 143.43, 141.74, 144.96, 144.67, 150.47, 147.31, 141.48, 142.01, 146.23, 146.34, 148.29, 143.82, 145.99, 139.36, 134.43, 134.29, 137.5, 136.55, 136.76, 136.91, 135.19, 131.34, 130.38, 132.4, 133.11, 132.41, 132.96, 133.54, 130.34, 135.26, 132.41, 131.33, 136.84, 138.9, 137.03, 138.29, 135.56, 136.84, 138.44, 138.75, 139.5, 137.47, 137.45, 135.44, 136.84, 135.34, 130.68, 136.6, 134.75, 135.85, 135.81, 137.29, 137.97, 141.5, 143.22, 143.19, 144.21, 142.96, 144.33, 145.16, 144.68, 145.73, 146.34, 147.31, 148.25, 146.58, 147.62, 151.32, 154.14, 150.88, 147.67, 148.75, 149.51, 150.07, 152.81, 152.54, 148.51, 148.97, 146.96, 145.32, 148.94, 150.0, 147.29, 150.32, 152.76, 156.47, 154.84, 153.41, 155.47, 155.55, 156.61, 151.79, 154.84, 155.16, 154.6, 158.67, 161.33, 163.43, 160.21, 160.86, 165.39, 166.87, 172.2, 171.72, 166.77, 165.36, 162.73, 163.38, 165.18, 163.66, 170.46, 169.33, 166.94, 165.14, 164.84, 165.92, 168.82, 164.6, 158.96, 159.53, 160.12, 145.24, 146.43, 144.44, 144.85, 147.49, 146.18, 150.32, 145.08, 145.78, 146.96, 148.43, 148.98, 146.01, 151.94, 152.83, 152.75, 153.56, 151.64, 151.74, 153.38, 158.16, 156.91, 156.11, 153.7, 153.09, 156.41, 156.27, 152.92, 152.75, 155.48, 155.84, 155.88, 158.78, 158.77, 159.74, 159.46, 160.09, 158.88, 158.46, 159.39, 164.54, 167.26, 167.15, 167.27, 180.26, 179.74, 181.86, 182.37, 180.49, 178.64, 175.31, 178.27, 180.4, 177.72, 179.29, 180.95, 182.93, 182.18, 185.0, 190.88, 188.8, 187.88, 191.09, 188.48, 191.56, 191.16, 190.12, 192.21, 196.86, 195.74, 198.34, 201.44, 202.59, 202.06, 202.45, 198.83, 198.49, 199.48, 196.7, 198.18, 205.36, 208.8, 212.49], "VUSA (S&P 500)": [103.12, 101.95, 103.14, 99.92, 103.92, 104.1, 103.02, 101.21, 99.69, 103.88, 103.97, 105.16, 106.61, 110.08, 111.25, 111.09, 111.51, 111.51, 108.93, 108.54, 109.5, 109.92, 110.8, 111.7, 113.54, 116.06, 116.45, 116.38, 118.24, 116.84, 118.15, 119.12, 120.36, 121.02, 120.97, 119.8, 119.43, 120.22, 118.09, 119.54, 120.19, 121.99, 124.32, 129.27, 129.36, 129.59, 127.95, 127.28, 131.24, 129.9, 131.39, 131.39, 128.0, 126.0, 122.8, 120.74, 122.82, 122.68, 119.24, 121.02, 120.92, 120.92, 125.11, 127.49, 128.63, 129.03, 126.44, 125.7, 125.39, 124.39, 122.63, 115.87, 122.05, 122.33, 118.34, 112.35, 117.98, 117.26, 121.53, 121.33, 123.38, 125.8, 127.76, 130.92, 133.98, 130.62, 129.72, 131.22, 126.39, 126.5, 123.23, 123.74, 121.21, 123.83, 125.01, 124.05, 126.15, 124.76, 125.03, 124.16, 121.27, 119.02, 119.43, 119.54, 120.89, 122.45, 119.64, 123.59, 130.27, 127.22, 127.32, 124.89, 126.45, 123.0, 121.72, 121.78, 124.54, 124.06, 125.58, 125.64, 124.65, 123.35, 124.89, 127.1, 128.65, 129.73, 129.41, 130.71, 129.57, 132.29, 130.35, 130.52, 134.2, 135.17, 134.35, 133.03, 129.87, 132.31, 135.96, 136.05, 136.89, 134.94, 134.3, 132.87, 135.81, 132.49, 129.69, 134.2, 136.4, 138.06, 137.69, 137.62, 139.45, 141.78, 142.23, 143.22, 140.82, 142.93, 144.59, 146.96, 149.27, 151.39, 152.5, 153.47, 154.59, 153.21, 153.47, 158.75, 158.82, 157.4, 158.32, 153.94, 156.59, 155.91, 159.58, 159.68, 159.45, 156.79, 161.39, 163.87, 166.0, 166.95, 166.21, 166.44, 163.87, 162.68, 159.31, 160.17, 164.9, 163.62, 163.74, 158.73, 164.63, 164.71, 165.07, 167.56, 171.03, 172.85, 173.2, 171.08, 178.63, 179.26, 183.28, 183.04, 184.04, 184.78, 182.47, 182.86, 183.99, 183.8, 190.0, 189.04, 189.58, 187.88, 187.19, 185.78, 180.48, 170.25, 167.94, 168.95, 166.99, 154.78, 155.44, 154.48, 159.2, 164.96, 164.8, 173.0, 166.4, 169.36, 171.66, 171.38, 172.19, 174.66, 177.37, 179.68, 181.67, 184.15, 182.47, 183.88, 184.6, 185.8, 185.46, 185.71, 188.83, 191.26, 191.92, 194.42, 193.08, 191.85, 196.27, 202.52, 196.41, 199.7, 195.4, 200.96, 200.63, 198.78, 198.89, 199.17, 197.65, 202.03, 202.41, 198.52, 197.09, 197.59, 196.14, 199.15, 199.29, 199.76, 196.24, 192.05, 188.5, 193.88, 198.19, 205.59, 206.72, 208.06, 211.98, 218.13, 218.03, 220.1, 219.17, 216.97, 221.8, 218.5, 219.92, 220.44, 217.56, 218.55, 216.25, 225.2, 225.03, 220.77, 224.36, 223.42, 222.43, 223.68, 228.66, 228.81, 231.15, 227.05, 224.63, 223.69], "VUKG (FTSE 100)": [104.35, 102.35, 101.76, 97.4, 98.73, 100.14, 101.25, 98.62, 101.26, 103.49, 102.89, 103.46, 103.45, 106.26, 107.87, 106.69, 107.26, 109.65, 108.63, 108.36, 108.55, 109.25, 110.09, 108.13, 110.08, 109.84, 110.04, 108.31, 108.63, 108.83, 110.36, 112.2, 110.49, 111.21, 111.47, 109.83, 108.38, 110.04, 109.77, 110.91, 112.98, 112.76, 113.34, 114.32, 115.13, 113.3, 110.7, 111.87, 114.66, 113.89, 115.76, 115.58, 117.18, 118.19, 117.38, 117.45, 117.76, 120.28, 118.25, 118.19, 110.42, 113.39, 117.59, 119.07, 119.78, 121.98, 121.17, 120.03, 120.3, 118.32, 118.54, 118.14, 121.47, 120.69, 117.08, 111.91, 115.61, 114.87, 115.45, 114.96, 116.95, 119.26, 119.56, 121.07, 121.95, 120.2, 117.95, 119.47, 117.3, 113.71, 112.01, 113.59, 111.53, 113.22, 114.34, 119.47, 119.19, 120.14, 121.89, 123.04, 121.86, 119.59, 121.95, 121.94, 125.64, 127.96, 126.84, 126.59, 128.88, 128.55, 130.67, 129.25, 130.46, 127.29, 120.81, 122.07, 125.7, 127.39, 129.89, 130.29, 129.88, 128.55, 128.19, 128.64, 126.33, 126.09, 125.59, 126.97, 123.73, 125.24, 120.45, 123.7, 127.23, 127.85, 125.9, 125.68, 121.59, 123.07, 125.16, 125.37, 129.32, 128.81, 128.01, 125.82, 127.63, 124.28, 122.48, 124.37, 123.84, 126.36, 126.31, 126.98, 127.39, 127.74, 129.99, 130.72, 129.77, 128.72, 125.91, 128.98, 128.53, 127.78, 130.57, 130.71, 130.34, 130.38, 131.62, 135.22, 135.85, 134.99, 136.5, 135.06, 139.3, 140.7, 144.57, 144.73, 142.99, 142.32, 141.95, 140.44, 141.95, 140.87, 141.38, 142.32, 140.52, 142.93, 140.8, 141.35, 144.12, 144.48, 145.18, 142.07, 143.7, 143.18, 144.81, 144.19, 143.74, 145.52, 143.61, 142.34, 140.67, 140.83, 144.47, 144.92, 145.28, 145.16, 141.49, 142.35, 144.12, 144.41, 148.87, 148.67, 151.88, 152.24, 152.98, 152.1, 154.81, 153.1, 152.38, 154.2, 154.52, 143.87, 142.71, 148.82, 151.16, 154.05, 153.59, 156.17, 156.56, 157.74, 159.37, 159.38, 158.22, 158.74, 159.13, 161.21, 162.1, 164.53, 163.94, 164.71, 166.08, 169.38, 167.33, 167.73, 169.14, 167.65, 168.93, 172.81, 171.87, 170.62, 174.57, 177.04, 176.41, 177.18, 174.29, 177.49, 177.11, 176.76, 181.31, 180.9, 182.5, 185.66, 187.61, 186.04, 187.26, 190.04, 191.47, 196.41, 200.51, 189.18, 189.21, 183.02, 184.31, 192.65, 195.92, 197.07, 191.89, 191.51, 189.21, 188.72, 193.87, 193.04, 192.27, 194.08, 192.31, 195.12, 198.25, 195.09, 196.86, 199.44, 202.08, 203.26, 200.9, 202.29, 202.57, 202.77, 199.64, 199.57, 200.51, 196.06, 197.8, 203.96, 200.37, 201.17], "VWRL (All-World)": [103.06, 102.04, 102.94, 99.49, 103.2, 104.11, 103.02, 99.99, 99.19, 102.46, 102.8, 103.15, 104.41, 107.04, 108.17, 107.86, 107.88, 108.21, 105.52, 105.55, 106.95, 107.59, 108.37, 108.75, 110.48, 111.62, 111.46, 111.4, 112.53, 111.13, 112.18, 113.16, 113.11, 114.26, 114.85, 113.93, 113.26, 113.71, 111.82, 112.63, 113.72, 114.82, 116.01, 119.98, 120.54, 119.8, 117.14, 116.88, 120.15, 118.85, 119.57, 119.81, 117.31, 116.2, 114.06, 111.47, 113.25, 113.87, 111.07, 111.69, 109.34, 109.61, 114.12, 115.23, 116.72, 116.5, 114.38, 113.65, 113.91, 112.34, 111.19, 107.25, 111.57, 111.84, 108.74, 103.81, 107.66, 107.21, 110.0, 109.26, 111.3, 112.83, 114.27, 116.82, 118.53, 116.44, 115.54, 116.5, 113.11, 112.64, 109.63, 110.5, 107.67, 109.48, 109.8, 111.46, 113.73, 112.43, 112.58, 112.47, 110.43, 108.52, 109.47, 109.7, 111.7, 113.65, 111.92, 114.63, 119.15, 116.81, 116.94, 114.47, 116.31, 113.26, 110.82, 111.33, 114.27, 113.7, 115.2, 115.23, 114.14, 113.38, 114.39, 115.92, 116.57, 117.28, 116.91, 117.99, 116.0, 118.36, 116.09, 117.21, 119.96, 121.23, 119.94, 118.74, 115.46, 117.45, 120.61, 120.41, 121.77, 120.41, 119.56, 118.1, 120.14, 117.1, 115.21, 119.2, 120.42, 122.24, 121.8, 121.93, 123.3, 125.2, 125.68, 126.83, 125.0, 126.23, 126.18, 128.43, 129.7, 131.21, 132.78, 133.54, 134.49, 133.77, 133.93, 137.71, 137.97, 136.87, 137.28, 134.06, 136.3, 136.55, 139.4, 139.62, 138.83, 136.71, 139.67, 140.09, 141.66, 142.58, 142.41, 143.11, 140.53, 139.87, 136.78, 137.91, 141.66, 141.09, 141.39, 136.96, 141.26, 141.18, 142.88, 144.63, 146.58, 147.43, 146.74, 145.43, 149.51, 149.82, 152.92, 152.63, 153.96, 154.06, 151.48, 151.95, 152.98, 153.1, 157.97, 157.57, 158.49, 157.65, 157.65, 156.84, 152.96, 147.2, 145.98, 147.01, 144.91, 134.5, 135.1, 135.66, 139.75, 144.51, 144.48, 149.98, 145.75, 147.86, 149.69, 149.41, 149.47, 151.72, 153.53, 155.17, 156.89, 159.07, 156.99, 158.9, 159.59, 161.1, 160.16, 160.52, 163.26, 165.35, 165.67, 168.47, 166.55, 166.6, 170.14, 174.38, 170.02, 173.14, 168.69, 173.04, 172.99, 171.82, 172.36, 172.45, 172.55, 176.34, 177.31, 174.6, 173.82, 175.12, 175.54, 178.53, 179.59, 175.96, 173.05, 168.94, 166.87, 172.17, 176.63, 182.54, 181.79, 182.84, 186.51, 189.84, 190.38, 192.89, 191.27, 191.29, 195.78, 192.75, 193.95, 193.26, 189.9, 191.25, 189.97, 196.89, 197.06, 194.38, 196.86, 196.93, 195.51, 195.68, 199.48, 198.8, 199.68, 196.12, 193.6, 193.01]}};
-    const SECTOR_DATA = {"Financials": 24.99, "Consumer Staples": 18.58, "Consumer Discretionary": 17.07, "Health Care": 13.11, "Industrials": 9.81, "Energy": 6.69, "Communication Services": 6.52, "Information Technology": 2.59, "Materials": 0.63};
-    const COUNTRY_DATA = {"United States": 50.27, "Sweden": 11.08, "Germany": 8.56, "France": 5.48, "United Kingdom": 4.81, "Netherlands": 4.67, "Norway": 4.22, "Italy": 4.03, "Denmark": 3.2, "Finland": 2.13, "Austria": 1.54};
 
+    let currentReconYear = '2026';
     let activeFilter = 'ALL';
     let searchQuery = '';
     let sortKey = 'rank';
@@ -522,6 +617,17 @@
       'VWRL (All-World)': true
     };
     let chartInstance = null;
+
+    // Toast function
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
 
     // Countdown Clock
     function tickCountdown() {
@@ -548,11 +654,29 @@
     setInterval(tickCountdown, 1000);
     tickCountdown();
 
-    // Render Diversification Lists
+    // Render Diversification Lists based on Active Reconstitution Year
     function renderDiversification() {
+      const currentHoldings = ANNUAL_RECONS[currentReconYear].holdings;
+      
+      const sectorAgg = {};
+      const countryAgg = {};
+      let usWeight = 0;
+      let euWeight = 0;
+
+      currentHoldings.forEach(h => {
+        sectorAgg[h.sector] = (sectorAgg[h.sector] || 0) + h.weight;
+        countryAgg[h.country] = (countryAgg[h.country] || 0) + h.weight;
+        if (h.is_us) usWeight += h.weight;
+        else euWeight += h.weight;
+      });
+
+      document.getElementById('alloc-us-badge').innerText = `${usWeight.toFixed(1)}% US`;
+      document.getElementById('alloc-eu-badge').innerText = `${euWeight.toFixed(1)}% Europe & UK`;
+
       const sContainer = document.getElementById('sector-list');
       sContainer.innerHTML = '';
-      for (const [sec, w] of Object.entries(SECTOR_DATA)) {
+      const sortedSectors = Object.entries(sectorAgg).sort((a,b) => b[1] - a[1]);
+      for (const [sec, w] of sortedSectors) {
         sContainer.innerHTML += `
           <div>
             <div class="flex justify-between text-xs mb-1">
@@ -568,30 +692,137 @@
 
       const cContainer = document.getElementById('country-list');
       cContainer.innerHTML = '';
-      for (const [country, w] of Object.entries(COUNTRY_DATA)) {
-        const flag = HOLDINGS.find(h => h.country === country)?.flag || '🌐';
+      const sortedCountries = Object.entries(countryAgg).sort((a,b) => b[1] - a[1]);
+      for (const [country, w] of sortedCountries) {
+        const flag = currentHoldings.find(h => h.country === country)?.flag || '🌐';
         cContainer.innerHTML += `
           <div>
             <div class="flex justify-between text-xs mb-1">
               <span class="text-[#202124]">${flag} ${country}</span>
-              <span class="font-medium text-[#5f6368]">${w.toFixed(1)}%</span>
+              <span class="font-mono text-[#5f6368]">${w.toFixed(1)}%</span>
             </div>
             <div class="w-full bg-[#f1f3f4] rounded-full h-1.5 overflow-hidden">
-              <div class="h-1.5 rounded-full bg-[#137333]" style="width: ${Math.min(w*2, 100)}%"></div>
+              <div class="h-1.5 rounded-full bg-[#34a853]" style="width: ${Math.min(w * 2, 100)}%"></div>
             </div>
           </div>
         `;
       }
     }
 
-    // Render Holdings Table
+    // Render Annual Reconstitutions Summary Table
+    function renderReconstitutionsArchive() {
+      const tbody = document.getElementById('recons-summary-tbody');
+      tbody.innerHTML = '';
+      const years = ['2026', '2025', '2024', '2023', '2022', '2021'];
+
+      years.forEach(yr => {
+        const info = ANNUAL_RECONS[yr];
+        const isActive = (yr === currentReconYear);
+        const dateObj = new Date(info.date);
+        const formattedDate = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        
+        let entrantsHtml = '';
+        if (yr === '2021') {
+          entrantsHtml = '<span class="text-[#1a73e8] font-medium">Initial Launch (50 Foundation Holdings)</span>';
+        } else {
+          entrantsHtml = `
+            <div class="flex items-center space-x-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-[#e6f4ea] text-[#137333] font-mono text-[10px]">+${info.added.length} in</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#fce8e6] text-[#c5221f] font-mono text-[10px]">-${info.removed.length} out</span>
+            </div>
+          `;
+        }
+
+        tbody.innerHTML += `
+          <tr class="hover:bg-[#f8f9fa] transition ${isActive ? 'bg-[#e8f0fe]/40' : ''}">
+            <td class="py-2.5 px-3 font-semibold ${isActive ? 'text-[#1a73e8]' : 'text-[#202124]'}">
+              ${yr} ${yr === '2026' ? '<span class="ml-1 text-[10px] px-1.5 py-0.2 rounded-full bg-[#1a73e8] text-white">Active</span>' : ''}
+            </td>
+            <td class="py-2.5 px-3 text-[#5f6368]">${formattedDate}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-medium text-[#137333]">${info.yield.toFixed(2)}%</td>
+            <td class="py-2.5 px-3 text-right font-mono text-[#202124]">+${info.cagr.toFixed(1)}%</td>
+            <td class="py-2.5 px-3 text-right font-mono text-[#202124]">${info.roe.toFixed(1)}%</td>
+            <td class="py-2.5 px-3 text-right font-mono text-[#5f6368]">${yr === '2021' ? '0.0%' : info.turnover_pct + '%'}</td>
+            <td class="py-2.5 px-3">${entrantsHtml}</td>
+            <td class="py-2.5 px-3 text-center">
+              <button onclick="setReconYear('${yr}')" class="px-2.5 py-1 rounded text-[11px] font-medium ${isActive ? 'bg-[#1a73e8] text-white' : 'bg-[#f1f3f4] text-[#1a73e8] hover:bg-[#e8f0fe]'} transition">
+                ${isActive ? 'Viewing' : 'View Holdings'}
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    // Set Active Reconstitution Year
+    function setReconYear(year) {
+      currentReconYear = year;
+
+      // Update Year Pills
+      ['2021', '2022', '2023', '2024', '2025', '2026'].forEach(y => {
+        const btn = document.getElementById(`year-btn-${y}`);
+        if (btn) {
+          btn.className = (y === year) ? 'year-pill active' : 'year-pill';
+        }
+      });
+
+      // Update Badge
+      const badge = document.getElementById('active-year-badge');
+      if (year === '2026') {
+        badge.className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1a73e8] text-white';
+        badge.innerText = '2026 Active Portfolio';
+      } else {
+        badge.className = 'px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#5f6368] text-white';
+        badge.innerText = `${year} Historical Portfolio`;
+      }
+
+      // Update Banner
+      const info = ANNUAL_RECONS[year];
+      const dateObj = new Date(info.date);
+      const formattedDate = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      
+      document.getElementById('banner-year-title').innerText = `${year} Annual Reconstitution`;
+      document.getElementById('banner-date').innerText = formattedDate;
+      document.getElementById('banner-yield').innerText = `${info.yield.toFixed(2)}%`;
+      document.getElementById('banner-cagr').innerText = `+${info.cagr.toFixed(1)}%`;
+      document.getElementById('banner-roe').innerText = `${info.roe.toFixed(1)}%`;
+      document.getElementById('banner-turnover').innerText = year === '2021' ? '0 changes (Launch)' : `${info.turnover_count} changes (${info.turnover_pct}%)`;
+
+      const chipsContainer = document.getElementById('banner-chips');
+      chipsContainer.innerHTML = '';
+      if (year === '2021') {
+        chipsContainer.innerHTML = '<span class="px-2 py-0.5 rounded bg-[#e8f0fe] text-[#1a73e8] font-medium text-[11px]">Inaugural Portfolio Foundation</span>';
+      } else {
+        const topAdded = info.added.slice(0, 6).join(', ') + (info.added.length > 6 ? ` +${info.added.length - 6} more` : '');
+        const topRemoved = info.removed.slice(0, 6).join(', ') + (info.removed.length > 6 ? ` +${info.removed.length - 6} more` : '');
+        chipsContainer.innerHTML = `
+          <div class="px-2 py-0.5 rounded bg-[#e6f4ea] text-[#137333] font-medium text-[10px]" title="${info.added.join(', ')}">
+            <strong>+${info.added.length} In:</strong> ${topAdded}
+          </div>
+          <div class="px-2 py-0.5 rounded bg-[#fce8e6] text-[#c5221f] font-medium text-[10px]" title="${info.removed.join(', ')}">
+            <strong>-${info.removed.length} Out:</strong> ${topRemoved}
+          </div>
+        `;
+      }
+
+      // Update Download Button
+      document.getElementById('download-csv-btn').innerText = `Download ${year} CSV`;
+
+      renderTable();
+      renderDiversification();
+      renderReconstitutionsArchive();
+    }
+
+    // Render Table for Active Year
     function renderTable() {
-      let filtered = HOLDINGS.filter(h => {
+      const currentHoldings = ANNUAL_RECONS[currentReconYear].holdings;
+
+      let filtered = currentHoldings.filter(h => {
         if (activeFilter === 'US' && !h.is_us) return false;
         if (activeFilter === 'EU' && h.is_us) return false;
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
-          return h.ticker.toLowerCase().includes(q) || h.name.toLowerCase().includes(q) || h.sector.toLowerCase().includes(q);
+          return h.ticker.toLowerCase().includes(q) || h.name.toLowerCase().includes(q) || h.sector.toLowerCase().includes(q) || h.country.toLowerCase().includes(q);
         }
         return true;
       });
@@ -627,7 +858,7 @@
         `;
       });
 
-      document.getElementById('table-record-count').innerText = `Showing ${filtered.length} of 50 constituents`;
+      document.getElementById('table-record-count').innerText = `Showing ${filtered.length} of 50 constituents (${currentReconYear} Reconstitution)`;
     }
 
     function handleSort(key) {
@@ -671,139 +902,91 @@
     }
     calcSlider.addEventListener('input', updateCalc);
 
-    // Copy T212 Pie Config
+    // Copy T212 Pie Config for Active Year
     function copyT212Pie() {
+      const currentHoldings = ANNUAL_RECONS[currentReconYear].holdings;
       let csv = 'ticker,weight_pct\n';
-      HOLDINGS.forEach(h => {
+      currentHoldings.forEach(h => {
         csv += `${h.ticker},${h.weight}\n`;
       });
       navigator.clipboard.writeText(csv).then(() => {
-        showToast('Trading 212 50-stock CSV configuration copied!');
+        showToast(`Trading 212 ${currentReconYear} configuration copied (${currentHoldings.length} stocks)!`);
       });
     }
 
+    // Download CSV for Active Year
     function downloadCSVFile() {
+      const currentHoldings = ANNUAL_RECONS[currentReconYear].holdings;
       let csv = 'rank,ticker,name,country,sector,weight_pct,div_yield,div_growth_5y,roe\n';
-      HOLDINGS.forEach(h => {
+      currentHoldings.forEach(h => {
         csv += `${h.rank},${h.ticker},"${h.name}",${h.country},${h.sector},${h.weight},${h.yield},${h.cagr},${h.roe}\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.setAttribute('href', url);
-      a.setAttribute('download', 'TXD50_Constituents_2026.csv');
+      a.setAttribute('download', `TXD50_Constituents_${currentReconYear}.csv`);
       a.click();
-      showToast('Downloaded TXD50_Constituents_2026.csv');
+      showToast(`Downloaded TXD50_Constituents_${currentReconYear}.csv`);
     }
 
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      document.getElementById('toast-text').innerText = msg;
-      t.classList.remove('translate-y-24', 'opacity-0');
-      setTimeout(() => {
-        t.classList.add('translate-y-24', 'opacity-0');
-      }, 3000);
-    }
-
-    // Google Finance Chart with Delineated High-Contrast Colours
-    function buildChart() {
-      const ctx = document.getElementById('googleFinanceChart').getContext('2d');
-      const allDates = CHART_DATA.dates || [];
-      const sTXD = CHART_DATA.series['TXD50 (Transatlantic 50)'] || [];
-      const sVusa = CHART_DATA.series['VUSA (S&P 500)'] || [];
-      const sSchd = CHART_DATA.series['SCHD (US Div 100)'] || [];
-      const sVukg = CHART_DATA.series['VUKG (FTSE 100)'] || [];
-      const sVwrl = CHART_DATA.series['VWRL (All-World)'] || [];
-
-      // Determine slice based on range
-      let sliceIdx = 0;
-      const n = allDates.length;
-      if (chartRange === '1M') sliceIdx = Math.max(0, n - 4);
-      else if (chartRange === '6M') sliceIdx = Math.max(0, n - 26);
-      else if (chartRange === 'YTD') sliceIdx = Math.max(0, n - 44);
-      else if (chartRange === '1Y') sliceIdx = Math.max(0, n - 52);
-      else if (chartRange === '5Y' || chartRange === 'MAX') sliceIdx = 0;
-
-      const dates = allDates.slice(sliceIdx);
-
-      function calcSeries(arr) {
-        const sub = arr.slice(sliceIdx);
-        if (chartMetric === 'drawdown') {
-          let max = sub[0] || 100;
-          return sub.map(v => {
-            if (v > max) max = v;
-            return Number(((v - max) / max * 100).toFixed(2));
-          });
-        }
-        // Base 100 at slice start
-        const base = sub[0] || 100.0;
-        return sub.map(v => Number((v / base * 100.0).toFixed(2)));
-      }
-
-      const isDD = (chartMetric === 'drawdown');
+    // Chart.js Configuration
+    function initChart() {
+      const ctx = document.getElementById('etfChart').getContext('2d');
+      const dates = CHART_DATA.dates;
       
-      // Clearly Delineated Benchmark Colours:
-      // TXD50: Royal Blue (#1a73e8)
-      // VUSA: Amber Gold (#f59e0b)
-      // SCHD: Royal Violet Purple (#7c3aed)
-      // VUKG: British Crimson Red (#dc2626)
-      // VWRL: Slate Grey (#4b5563)
       const datasets = [
         {
           label: 'TXD50 (Transatlantic 50)',
-          data: calcSeries(sTXD),
+          data: chartMetric === 'total_return' ? CHART_DATA.series.TXD50 : CHART_DATA.drawdown.TXD50,
           borderColor: '#1a73e8',
-          borderWidth: 2.5,
+          backgroundColor: 'rgba(26, 115, 232, 0.05)',
+          borderWidth: 2.2,
           pointRadius: 0,
+          tension: 0.1,
+          fill: chartMetric === 'total_return' ? 'origin' : false
+        },
+        {
+          label: 'VUSA (S&P 500)',
+          data: chartMetric === 'total_return' ? CHART_DATA.series.VUSA : CHART_DATA.drawdown.VUSA,
+          borderColor: '#f59e0b',
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0,
+          hidden: !visibleBenchmarks['VUSA (S&P 500)'],
+          tension: 0.1
+        },
+        {
+          label: 'SCHD (US Div 100)',
+          data: chartMetric === 'total_return' ? CHART_DATA.series.SCHD : CHART_DATA.drawdown.SCHD,
+          borderColor: '#7c3aed',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          hidden: !visibleBenchmarks['SCHD (US Div 100)'],
+          tension: 0.1
+        },
+        {
+          label: 'VUKG (FTSE 100)',
+          data: chartMetric === 'total_return' ? CHART_DATA.series.VUKG : CHART_DATA.drawdown.VUKG,
+          borderColor: '#dc2626',
+          borderWidth: 1.2,
+          borderDash: [2, 2],
+          pointRadius: 0,
+          hidden: !visibleBenchmarks['VUKG (FTSE 100)'],
+          tension: 0.1
+        },
+        {
+          label: 'VWRL (All-World)',
+          data: chartMetric === 'total_return' ? CHART_DATA.series.VWRL : CHART_DATA.drawdown.VWRL,
+          borderColor: '#4b5563',
+          borderWidth: 1.2,
+          borderDash: [5, 3],
+          pointRadius: 0,
+          hidden: !visibleBenchmarks['VWRL (All-World)'],
           tension: 0.1
         }
       ];
 
-      if (visibleBenchmarks['VUSA (S&P 500)']) {
-        datasets.push({
-          label: 'VUSA (S&P 500)',
-          data: calcSeries(sVusa),
-          borderColor: '#f59e0b',
-          borderWidth: 1.8,
-          borderDash: [3, 3],
-          pointRadius: 0,
-          tension: 0.1
-        });
-      }
-      if (visibleBenchmarks['SCHD (US Div 100)']) {
-        datasets.push({
-          label: 'SCHD (US Div 100)',
-          data: calcSeries(sSchd),
-          borderColor: '#7c3aed',
-          borderWidth: 1.8,
-          pointRadius: 0,
-          tension: 0.1
-        });
-      }
-      if (visibleBenchmarks['VUKG (FTSE 100)']) {
-        datasets.push({
-          label: 'VUKG (FTSE 100)',
-          data: calcSeries(sVukg),
-          borderColor: '#dc2626',
-          borderWidth: 1.5,
-          borderDash: [2, 2],
-          pointRadius: 0,
-          tension: 0.1
-        });
-      }
-      if (visibleBenchmarks['VWRL (All-World)']) {
-        datasets.push({
-          label: 'VWRL (All-World)',
-          data: calcSeries(sVwrl),
-          borderColor: '#4b5563',
-          borderWidth: 1.5,
-          borderDash: [4, 4],
-          pointRadius: 0,
-          tension: 0.1
-        });
-      }
-
-      if (chartInstance) chartInstance.destroy();
       chartInstance = new Chart(ctx, {
         type: 'line',
         data: { labels: dates, datasets: datasets },
@@ -814,33 +997,35 @@
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#ffffff',
-              titleColor: '#202124',
-              bodyColor: '#5f6368',
-              borderColor: '#dadce0',
-              borderWidth: 1,
+              backgroundColor: 'rgba(32, 33, 36, 0.95)',
+              titleColor: '#ffffff',
+              bodyColor: '#e8eaed',
+              titleFont: { family: 'Google Sans', size: 12 },
+              bodyFont: { family: 'Roboto Mono', size: 11 },
               padding: 10,
-              boxPadding: 4,
-              usePointStyle: true,
+              cornerRadius: 8,
               callbacks: {
-                label: function(ctx) {
-                  return isDD ? ` ${ctx.dataset.label}: ${ctx.raw}%` : ` ${ctx.dataset.label}: £${ctx.raw}`;
+                label: function(context) {
+                  const val = context.parsed.y;
+                  return ` ${context.dataset.label}: ${chartMetric === 'total_return' ? '£' + val.toFixed(2) : val.toFixed(2) + '%'}`;
                 }
               }
             }
           },
           scales: {
             x: {
-              grid: { display: false },
-              ticks: { color: '#70757a', maxTicksLimit: 7, font: { family: 'Google Sans Text', size: 10 } }
+              grid: { display: false, drawBorder: false },
+              ticks: { color: '#70757a', font: { size: 10, family: 'Roboto Mono' }, maxTicksLimit: 7 }
             },
             y: {
               position: 'right',
-              grid: { color: '#f1f3f4' },
+              grid: { color: '#f1f3f4', drawBorder: false },
               ticks: {
                 color: '#70757a',
-                font: { family: 'Roboto Mono', size: 10 },
-                callback: function(v) { return isDD ? `${v}%` : `£${v}`; }
+                font: { size: 10, family: 'Roboto Mono' },
+                callback: function(value) {
+                  return chartMetric === 'total_return' ? '£' + value : value + '%';
+                }
               }
             }
           }
@@ -848,45 +1033,63 @@
       });
     }
 
-    function filterChartRange(range) {
-      chartRange = range;
-      ['1m', '6m', 'ytd', '1y', '5y', 'max'].forEach(t => {
-        document.getElementById(`tab-${t}`).className = (t === range.toLowerCase()) ? 'tab-btn active' : 'tab-btn';
+    function toggleBenchmark(name) {
+      visibleBenchmarks[name] = !visibleBenchmarks[name];
+      chartInstance.data.datasets.forEach(ds => {
+        if (ds.label.startsWith(name.split(' ')[0])) {
+          ds.hidden = !visibleBenchmarks[name];
+        }
       });
-      buildChart();
+      chartInstance.update();
     }
 
     function setChartMetric(metric) {
       chartMetric = metric;
-      document.getElementById('btn-metric-tot').className = (metric === 'total_return') ? 'tab-btn active' : 'tab-btn';
-      document.getElementById('btn-metric-dd').className = (metric === 'drawdown') ? 'tab-btn active' : 'tab-btn';
-      buildChart();
+      document.getElementById('btn-tr').className = metric === 'total_return' ? 'tab-btn active' : 'tab-btn';
+      document.getElementById('btn-dd').className = metric === 'drawdown' ? 'tab-btn active' : 'tab-btn';
+      
+      chartInstance.data.datasets[0].data = metric === 'total_return' ? CHART_DATA.series.TXD50 : CHART_DATA.drawdown.TXD50;
+      chartInstance.data.datasets[0].fill = metric === 'total_return' ? 'origin' : false;
+      chartInstance.data.datasets[1].data = metric === 'total_return' ? CHART_DATA.series.VUSA : CHART_DATA.drawdown.VUSA;
+      chartInstance.data.datasets[2].data = metric === 'total_return' ? CHART_DATA.series.SCHD : CHART_DATA.drawdown.SCHD;
+      chartInstance.data.datasets[3].data = metric === 'total_return' ? CHART_DATA.series.VUKG : CHART_DATA.drawdown.VUKG;
+      chartInstance.data.datasets[4].data = metric === 'total_return' ? CHART_DATA.series.VWRL : CHART_DATA.drawdown.VWRL;
+      chartInstance.update();
     }
 
-    function toggleBenchmark(name) {
-      visibleBenchmarks[name] = !visibleBenchmarks[name];
-      const idMap = {
-        'VUSA (S&P 500)': 'chk-vusa',
-        'SCHD (US Div 100)': 'chk-schd',
-        'VUKG (FTSE 100)': 'chk-vukg',
-        'VWRL (All-World)': 'chk-vwrl'
-      };
-      const btn = document.getElementById(idMap[name]);
-      if (visibleBenchmarks[name]) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-      buildChart();
+    function setChartRange(range) {
+      chartRange = range;
+      ['1M', '6M', 'YTD', '1Y', '5Y', 'MAX'].forEach(r => {
+        document.getElementById(`btn-${r}`).className = (r === range) ? 'tab-btn active' : 'tab-btn';
+      });
+
+      const totalPoints = CHART_DATA.dates.length;
+      let slicePoints = totalPoints;
+      if (range === '1M') slicePoints = Math.min(4, totalPoints);
+      else if (range === '6M') slicePoints = Math.min(26, totalPoints);
+      else if (range === 'YTD') slicePoints = Math.min(43, totalPoints);
+      else if (range === '1Y') slicePoints = Math.min(52, totalPoints);
+      else if (range === '5Y') slicePoints = totalPoints;
+      else if (range === 'MAX') slicePoints = totalPoints;
+
+      const startIndex = totalPoints - slicePoints;
+      chartInstance.data.labels = CHART_DATA.dates.slice(startIndex);
+      
+      const sKeys = ['TXD50', 'VUSA', 'SCHD', 'VUKG', 'VWRL'];
+      sKeys.forEach((key, idx) => {
+        const srcData = chartMetric === 'total_return' ? CHART_DATA.series[key] : CHART_DATA.drawdown[key];
+        chartInstance.data.datasets[idx].data = srcData.slice(startIndex);
+      });
+      chartInstance.update();
     }
 
     // Initialize Page
-    document.addEventListener('DOMContentLoaded', () => {
-      renderDiversification();
-      renderTable();
+    window.addEventListener('DOMContentLoaded', () => {
+      setReconYear('2026');
+      initChart();
       updateCalc();
-      buildChart();
     });
   </script>
+
 </body>
 </html>
